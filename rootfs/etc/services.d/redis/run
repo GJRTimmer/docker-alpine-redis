@@ -1,6 +1,10 @@
 #!/usr/bin/with-contenv bash
 set -e
 
+sysctl -p
+
+sysctl -w net.core.somaxconn=65535
+
 REDIS_PASSWORD=${REDIS_PASSWORD:-}
 REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-1024}
 
