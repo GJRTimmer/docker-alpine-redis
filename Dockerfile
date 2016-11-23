@@ -3,3 +3,7 @@ MAINTAINER G.J.R. Timmer <gjr.timmer@gmail.com>
 
 RUN echo 'http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
 	apk add --update --no-cache redis
+
+COPY rootfs/ /
+	
+EXPOSE 6379/tcp
