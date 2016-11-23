@@ -19,7 +19,6 @@ release:
     - shell
   only:
     - tags
-    - master
   script:
     - docker build --pull --force-rm=true --tag=$(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION) .
     - docker push $(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION)
