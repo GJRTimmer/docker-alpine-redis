@@ -28,6 +28,7 @@ Default Locations:
 | Log(s) | /var/log/redis |
 | Unix Socket | /var/run/redis/redis.sock |
 
+
 | Option | Description |
 |--------|-------------|
 | REDIS_PASSWORD | Password authentication (default:NONE) |
