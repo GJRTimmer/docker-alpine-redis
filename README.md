@@ -31,5 +31,6 @@ Default Locations:
 
 | Option | Description |
 |--------|-------------|
-| REDIS_PASSWORD | Password authentication (default:NONE) |
+| REDIS_PASSWORD | Password authentication (default: NONE) |
+| REDIS_MAXCLIENTS | Set maximum number of clients (default: 1024) |
 
