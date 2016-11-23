@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv bash
+
+# MAP UID/GID
+USERMAP_UID=${USERMAP_UID:-redis}
+USERMAP_GID=${USERMAP_GID:-redis}
+
+chown -R ${USERMAP_UID}:${USERMAP_GID} /var/lib/redis
+chown -R ${USERMAP_UID}:${USERMAP_GID} /var/log/redis
+chown -R ${USERMAP_UID}:${USERMAP_GID} /var/run/redis
