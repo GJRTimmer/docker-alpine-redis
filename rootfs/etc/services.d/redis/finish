@@ -1,5 +1,14 @@
 #!/usr/bin/execlineb -S0
 
-# Cleanup logging on shutdown
+REDIS_PASSWORD=${REDIS_PASSWORD:-}
 
+# Save to disk
+redis-cli ${REDIS_PASSWORD:+-a $REDIS_PASSWORD} save
+
+# Shutdown
+redis-cli ${REDIS_PASSWORD:+-a $REDIS_PASSWORD} shutdown
+
+# Cleanup logging on shutdown
 rm -f /var/log/redis/*;
+
+s6-svscanctl -t /var/run/s6/services
