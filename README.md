@@ -28,6 +28,8 @@ Default Locations:
 | Log(s) | /var/log/redis |
 | Unix Socket | /var/run/redis/redis.sock |
 
+<br>
+<br>
 
 | Option | Description |
 |--------|-------------|
