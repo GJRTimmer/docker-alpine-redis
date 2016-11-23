@@ -1,4 +1,5 @@
 #!/usr/bin/execlineb -S0
+/usr/bin/with-contenv bash
 
 REDIS_PASSWORD=${REDIS_PASSWORD:-}
 
