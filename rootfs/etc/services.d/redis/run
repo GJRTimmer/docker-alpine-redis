@@ -5,6 +5,6 @@ REDIS_PASSWORD=${REDIS_PASSWORD:-}
 REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-1024}
 
 # Set Max Clients
-sed 's/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/' -i /etc/redis.conf
+sed "s/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/" -i /etc/redis.conf
 
 exec s6-setuidgid redis redis-server /etc/redis.conf ${REDIS_PASSWORD:+--requirepass $REDIS_PASSWORD};
