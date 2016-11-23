@@ -1,3 +1,6 @@
-#!/usr/bin/with-contenv sh
+#!/usr/bin/with-contenv bash
+set -e
 
-exec s6-setuidgid redis redis-server /etc/redis.conf;
+REDIS_PASSWORD=${REDIS_PASSWORD:-}
+
+exec s6-setuidgid redis redis-server /etc/redis.conf ${REDIS_PASSWORD:+--requirepass $REDIS_PASSWORD};
