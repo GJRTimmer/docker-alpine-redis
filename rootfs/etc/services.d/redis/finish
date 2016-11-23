@@ -1,0 +1,5 @@
+#!/usr/bin/execlineb -S0
+
+# Cleanup logging on shutdown
+
+rm -f /var/log/redis/*;
