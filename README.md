@@ -20,8 +20,15 @@ docker pull registry.timmertech.nl/docker/alpine-redis
 
 # Configuration
 
+Default Locations:
+
+| Type | Location |
+|------|----------|
+| Data | /var/lib/redis |
+| Log(s) | /var/log/redis |
+| Unix Socket | /var/run/redis/redis.sock |
+
 | Option | Description |
 |--------|-------------|
-| REDIS_DATA_DIR | /var/lib/redis |
 | REDIS_PASSWORD | Password authentication (default:NONE) |
 
