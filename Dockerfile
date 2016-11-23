@@ -3,7 +3,9 @@ MAINTAINER G.J.R. Timmer <gjr.timmer@gmail.com>
 
 RUN echo 'http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
 	apk add --update --no-cache redis && \
-	sed 's/^bind 127.0.0.1/bind 0.0.0.0/' -i /etc/redis/redis.conf
+	sed 's/^bind 127.0.0.1/bind 0.0.0.0/' -i /etc/redis/redis.conf && \
+	sed 's/^# unixsocket \/tmp/unixsocket \/var\/run\/redis/' -i /etc/redis/redis.conf && \
+	sed 's/^# unixsocketperm 700/unixsocketperm 777/' -i /etc/redis/redis.conf
 
 COPY rootfs/ /
 
