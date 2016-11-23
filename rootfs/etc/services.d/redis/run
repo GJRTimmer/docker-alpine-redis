@@ -1,14 +1,14 @@
 #!/usr/bin/with-contenv bash
 set -e
 
-sysctl -p
-
-sysctl -w net.core.somaxconn=65535
-
 REDIS_PASSWORD=${REDIS_PASSWORD:-}
 REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-1024}
 
 # Set Max Clients
 sed "s/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/" -i /etc/redis.conf
 
-exec s6-setuidgid redis redis-server /etc/redis.conf ${REDIS_PASSWORD:+--requirepass $REDIS_PASSWORD};
+# MAP UID/GID
+USERMAP_UID=${USERMAP_UID:-redis}
+USERMAP_GID=${USERMAP_GID:-redis}
+
+exec s6-setuidgid ${USERMAP_UID}:${USERMAP_GID} redis-server /etc/redis.conf ${REDIS_PASSWORD:+--requirepass $REDIS_PASSWORD};

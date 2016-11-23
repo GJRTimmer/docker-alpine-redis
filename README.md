@@ -35,4 +35,5 @@ Default Locations:
 |--------|-------------|
 | REDIS_PASSWORD | Password authentication (default: NONE) |
 | REDIS_MAXCLIENTS | Set maximum number of clients (default: 1024) |
-
+| USERMAP_UID | Map ownership to UID |
+| USERMAP_GID | Map ownership to GID |
