@@ -1,7 +1,7 @@
 FROM registry.timmertech.nl/docker/alpine-base:latest
 MAINTAINER G.J.R. Timmer <gjr.timmer@gmail.com>
 
-RUN echo 'http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
+RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
 	apk add --update --no-cache redis && \
 	sed 's/^daemonize yes/daemonize no/' -i /etc/redis.conf && \
 	sed 's/^bind 127.0.0.1/bind 0.0.0.0/' -i /etc/redis.conf && \
