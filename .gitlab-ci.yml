@@ -1,8 +1,10 @@
 stages:
-  - docker
+  - build
+  - deploy
+  - clean
   
 build:
-  stage: docker
+  stage: build
   tags: 
     - shell
   except:
@@ -10,17 +12,32 @@ build:
   script:
     - docker build --pull --force-rm=true --tag=$(cat REPOSITORY)/${CI_PROJECT_PATH} .
     - docker push $(cat REPOSITORY)/${CI_PROJECT_PATH}
-    # Remove from docker host
-    - docker rmi $(cat REPOSITORY)/${CI_PROJECT_PATH}
-
+    
 release:
-  stage: docker
+  stage: deploy
   tags: 
     - shell
   only:
     - tags
+    - master
   script:
     - docker build --pull --force-rm=true --tag=$(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION) .
     - docker push $(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION)
-    # Remove from docker host
+
+clean-build:
+  stage: clean
+  tags:
+    - shell
+  except:
+    - tags
+  script:
+    - docker rmi $(cat REPOSITORY)/${CI_PROJECT_PATH}
+
+clean-release:
+  stage: clean
+  tags:
+    - shell
+  only:
+    - tags
+  script:
     - docker rmi $(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION)
