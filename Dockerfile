@@ -11,6 +11,6 @@ RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/reposito
 
 COPY rootfs/ /
 
-VOLUME ["/var/lib/redis", "/var/log/redis"]
-
 EXPOSE 6379/tcp
+
+VOLUME ["/var/lib/redis", "/var/log/redis"]
