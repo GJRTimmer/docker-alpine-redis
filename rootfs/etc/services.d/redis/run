@@ -11,4 +11,9 @@ sed "s/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/" -i /etc/redis.conf
 USERMAP_UID=${USERMAP_UID:-redis}
 USERMAP_GID=${USERMAP_GID:-redis}
 
-exec s6-setuidgid -u ${USERMAP_UID} -g ${USERMAP_GID} redis-server /etc/redis.conf ${REDIS_PASSWORD:+--requirepass $REDIS_PASSWORD};
+RUN_UID_GID="${USERMAP_UID}:${USERMAP_GID}"
+if [ ${PG_UID} = "redis" ] && [ ${PG_GID} = "redis" ]; then
+	RUN_UID_GID=postgres
+fi 
+
+exec s6-setuidgid ${RUN_UID_GID} redis-server /etc/redis.conf ${REDIS_PASSWORD:+--requirepass $REDIS_PASSWORD};
