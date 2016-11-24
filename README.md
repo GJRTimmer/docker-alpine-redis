@@ -4,7 +4,8 @@
 
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
-  - [Configuration](#configuration)
+  - [Locations](#locations)
+  - [Configuration Options](#configuration-options)
 
 # Introduction
 
@@ -18,7 +19,7 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
 docker pull registry.timmertech.nl/docker/alpine-redis
 ```
 
-# Configuration
+# Locations
 
 Default Locations:
 
@@ -28,8 +29,7 @@ Default Locations:
 | Log(s) | /var/log/redis |
 | Unix Socket | /var/run/redis/redis.sock |
 
-<br>
-<br>
+# Configuration Options
 
 | Option | Description |
 |--------|-------------|
