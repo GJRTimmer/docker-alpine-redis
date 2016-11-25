@@ -16,6 +16,7 @@ deploy:
   tags:
     - shell
   script:
+    - echo "docker push: $(cat REPOSITORY)/${CI_PROJECT_PATH}"
     - docker push $(cat REPOSITORY)/${CI_PROJECT_PATH}
 
 release:
@@ -36,12 +37,4 @@ clean:
     - shell
   script:
     - if [ ! -z $(docker images -q $(cat REPOSITORY)/${CI_PROJECT_PATH}) ]; then echo "Removing: $(cat REPOSITORY)/${CI_PROJECT_PATH}"; docker rmi $(cat REPOSITORY)/${CI_PROJECT_PATH}; fi
-
-clean-release:
-  stage: clean
-  tags:
-    - shell
-  only:
-    - tags
-  script:
     - if [ ! -z $(docker images -q $(cat REPOSITORY)/${CI_PROJECT_PATH}:${CI_BUILD_REF_NAME}) ]; then echo "Removing: $(cat REPOSITORY)/${CI_PROJECT_PATH}:${CI_BUILD_REF_NAME}"; docker rmi $(cat REPOSITORY)/${CI_PROJECT_PATH}:${CI_BUILD_REF_NAME}; fi
