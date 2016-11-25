@@ -9,15 +9,6 @@ build:
     - shell
   script:
     - docker build --pull --force-rm=true --tag=$(cat REPOSITORY)/${CI_PROJECT_PATH} .
-    
-release:
-  stage: build
-  tags: 
-    - shell
-  only:
-    - tags
-  script:
-    - docker build --pull --force-rm=true --tag=$(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION) .
 
 deploy:
   stage: deploy
@@ -26,14 +17,15 @@ deploy:
   script:
     - docker push $(cat REPOSITORY)/${CI_PROJECT_PATH}
 
-deploy-release:
+release:
   stage: deploy
-  tags:
+  tags: 
     - shell
   only:
     - tags
   script:
-    - docker push $(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION)
+    - docker tag $(cat REPOSITORY)/${CI_PROJECT_PATH} $(cat REPOSITORY)/${CI_PROJECT_PATH}:${CI_BUILD_REF_NAME}
+    - docker push $(cat REPOSITORY)/${CI_PROJECT_PATH}:${CI_BUILD_REF_NAME}
     
 clean:
   stage: clean
@@ -49,4 +41,4 @@ clean-release:
   only:
     - tags
   script:
-    - if [ ! -z $(docker images -q $(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION)) ]; then docker rmi $(cat REPOSITORY)/${CI_PROJECT_PATH}:$(cat VERSION); fi
+    - if [ ! -z $(docker images -q $(cat REPOSITORY)/${CI_PROJECT_PATH}:${CI_BUILD_REF_NAME}) ]; then docker rmi $(cat REPOSITORY)/${CI_PROJECT_PATH}:${CI_BUILD_REF_NAME}; fi
