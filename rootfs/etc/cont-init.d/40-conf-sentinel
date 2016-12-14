@@ -57,4 +57,7 @@ if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; the
 	
 	# sentinel failover-timeout
 	sed "s/^sentinel failover-timeout.*/sentinel failover-timeout ${SENTINEL_MASTER_SET} ${SENTINEL_FAILOVER_TIMEOUT}/" -i /etc/sentinel.conf
+	
+	# 
+	sed "s/^sentinel parallel-syncs.*/sentinel parallel-syncs ${SENTINEL_MASTER_SET} 1/" -i /etc/sentinel.conf
 fi
