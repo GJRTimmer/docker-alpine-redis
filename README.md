@@ -31,9 +31,11 @@ Default Locations:
 
 # Configuration Options
 
-| Option | Description |
-|--------|-------------|
-| REDIS_PASSWORD | Password authentication (default: NONE) |
-| REDIS_MAXCLIENTS | Set maximum number of clients (default: 1024) |
-| USERMAP_UID | Map ownership to UID |
-| USERMAP_GID | Map ownership to GID |
+| Option | Default | Description |
+|--------|---------|-------------|
+| REDIS_PORT | 6379 | Redis port |
+| REDIS_TIMEOUT | 0 | Close the connection after a client is idle for N seconds (0 to disable) |
+| REDIS_PASSWORD | - | Password authentication |
+| REDIS_MAXCLIENTS | - | Set maximum number of clients |
+| USERMAP_UID | - | Map ownership to UID |
+| USERMAP_GID | - | Map ownership to GID |
