@@ -14,5 +14,8 @@ if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; the
 		USERMAP_GID=$(id -g $USERMAP_GID)
 	fi
 
+	chown ${USERMAP_UID}:${USERMAP_GID} /etc/sentinel.conf
+	chmod 0775 /etc/sentinel.conf
+	
 	exec s6-applyuidgid -u ${USERMAP_UID} -g ${USERMAP_GID} redis-server /etc/sentinel.conf --sentinel
 fi
