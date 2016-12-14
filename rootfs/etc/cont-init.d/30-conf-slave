@@ -1,0 +1,26 @@
+#!/usr/bin/with-contenv bash
+set -e
+
+REDIS_IS_SLAVE=${REDIS_IS_SLAVE:-0}
+REDIS_MASTER_HOST=${REDIS_MASTER_HOST:-}
+REDIS_MASTER_PORT=${REDIS_MASTER_PORT:-6379}
+REDIS_MASTER_PASSWORD=${REDIS_MASTER_PASSWORD:-}
+
+if (( ${REDIS_IS_SLAVE} == 1 )) || [ "${REDIS_IS_SLAVE}" = "true" ]; then
+
+	if [ -z "$REDIS_MASTER_HOST" ]; then
+		echo "Missing REDIS_MASTER_HOST"
+		exit 1
+	fi
+	
+	if [ -z "$REDIS_MASTER_PORT" ]; then
+		echo "Missing REDIS_MASTER_PORT"
+		exit 1
+	fi
+
+	sed "s/^# slaveof <masterip> <masterport>/slaveof ${REDIS_MASTER_HOST} ${REDIS_MASTER_PORT}/" -i /etc/redis.conf
+	
+	if [ -n "$REDIS_MASTER_HOST" ]; then
+		sed "s/^# masterauth <master-password>/masterauth ${REDIS_MASTER_PASSWORD}/" -i /etc/redis.conf
+	fi
+fi

@@ -59,8 +59,8 @@ Default Locations:
 # Slave Configuration Options
 | Option | Default | Description |
 |--------|---------|-------------|
-| REDIS_IS_SLAVE | false | If set to true redis server will become a slave.<br><br>Required Parameters for slave configuration:<br> - REDIS_MASTER<br> - REDIS_MASTER_IP<br> - REDIS_MASTER_PORT<br> |
-| REDIS_MASTER | - | Name of REDIS Master |
-| REDIS_PORT | 6379 | Port number of REDIS Master |
+| REDIS_IS_SLAVE | 0 | If set to ```1``` or ```true``` redis server will become a slave.<br><br>Required Parameters for slave configuration:<br> - REDIS_MASTER_HOST<br> - REDIS_MASTER_PORT<br> |
+| REDIS_MASTER_HOST | - | IP of REDIS Master |
+| REDIS_MASTER_PORT | 6379 | Port number of REDIS Master |
 | REDIS_MASTER_PASSWORD | - | Password of Redis Master |
 
