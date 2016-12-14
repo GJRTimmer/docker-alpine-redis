@@ -2,10 +2,6 @@
 set -e
 
 REDIS_PASSWORD=${REDIS_PASSWORD:-}
-REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-1024}
-
-# Set Max Clients
-sed "s/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/" -i /etc/redis.conf
 
 # MAP UID/GID
 USERMAP_UID=${USERMAP_UID:-redis}
