@@ -48,7 +48,7 @@ if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; the
 		exit 1
 	fi
 	
-	sed "s/^sentinel monitor.*/sentinel monitor ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_IP} ${SENTINEL_MASTER_PORT} ${SENTINEL_QUORUM} /" -i /etc/sentinel.conf
+	sed "s/^sentinel monitor.*/sentinel monitor ${SENTINEL_MASTER_SET} 127.0.0.1 ${REDIS_PORT} ${SENTINEL_QUORUM} /" -i /etc/sentinel.conf
 	
 	if [ -n "$SENTINEL_MASTER_PASSWORD" ]; then
 		sed "s/^# sentinel auth-pass.*/sentinel auth-pass ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_PASSWORD}/" -i /etc/sentinel.conf
