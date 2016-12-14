@@ -1,7 +1,0 @@
-#!/usr/bin/with-contenv bash
-set -e
-
-REDIS_TIMEOUT=${REDIS_TIMEOUT:-0}
-
-# Set Max Clients
-sed "s/^timeout.*/timeout ${REDIS_TIMEOUT}/" -i /etc/redis.conf

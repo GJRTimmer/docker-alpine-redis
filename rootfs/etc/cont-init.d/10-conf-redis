@@ -1,0 +1,23 @@
+#!/usr/bin/with-contenv bash
+set -e
+
+REDIS_DATA=${REDIS_DATA:-/var/lib/redis}
+REDIS_DATABASES=${REDIS_DATABASES:-16}
+REDIS_TIMEOUT=${REDIS_TIMEOUT:-0}
+REDIS_KEEPALIVE=${REDIS_KEEPALIVE:-0}
+REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-1024}
+
+# Set data directory
+sed "s#^dir.*#dir ${REDIS_DATA}#" -i /etc/redis.conf
+
+# Set Timeout
+sed "s/^timeout.*/timeout ${REDIS_TIMEOUT}/" -i /etc/redis.conf
+
+# Set TCP KeepAlive
+sed "s/^tcp-keepalive.*/tcp-keepalive ${REDIS_KEEPALIVE}/" -i /etc/redis.conf
+
+# Set databases
+sed "s/^databases.*/databases ${REDIS_DATABASES}/" -i /etc/redis.conf
+
+# Set Max Clients
+sed "s/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/" -i /etc/redis.conf
