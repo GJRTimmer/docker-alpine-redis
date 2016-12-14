@@ -30,4 +30,5 @@ sed "s/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/" -i /etc/redis.conf
 # Set password
 if [ -n "$REDIS_PASSWORD" ]; then
 	sed "s/^# requirepass.*/requirepass ${REDIS_PASSWORD}/" -i /etc/redis.conf
+	sed "s/^requirepass.*/requirepass ${REDIS_PASSWORD}/" -i /etc/redis.conf
 fi

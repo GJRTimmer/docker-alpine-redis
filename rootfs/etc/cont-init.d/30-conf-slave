@@ -19,8 +19,10 @@ if (( ${REDIS_IS_SLAVE} == 1 )) || [ "${REDIS_IS_SLAVE}" = "true" ]; then
 	fi
 
 	sed "s/^# slaveof.*/slaveof ${REDIS_MASTER_HOST} ${REDIS_MASTER_PORT}/" -i /etc/redis.conf
+	sed "s/^slaveof.*/slaveof ${REDIS_MASTER_HOST} ${REDIS_MASTER_PORT}/" -i /etc/redis.conf
 	
 	if [ -n "$REDIS_MASTER_PASSWORD" ]; then
 		sed "s/^# masterauth.*/masterauth ${REDIS_MASTER_PASSWORD}/" -i /etc/redis.conf
+		sed "s/^masterauth.*/masterauth ${REDIS_MASTER_PASSWORD}/" -i /etc/redis.conf
 	fi
 fi

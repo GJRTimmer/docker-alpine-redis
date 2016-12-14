@@ -20,10 +20,12 @@ if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; the
 	
 	if [ -n "$SENTINEL_ANNOUNCE_IP" ]; then
 		sed "s/^# sentinel announce-ip.*/sentinel announce-ip ${SENTINEL_ANNOUNCE_IP}/" -i /etc/sentinel.conf
+		sed "s/^sentinel announce-ip.*/sentinel announce-ip ${SENTINEL_ANNOUNCE_IP}/" -i /etc/sentinel.conf
 	fi
 	
 	if [ -n "$SENTINEL_ANNOUNCE_PORT" ]; then
 		sed "s/^# sentinel announce-port.*/sentinel announce-port ${SENTINEL_ANNOUNCE_PORT}/" -i /etc/sentinel.conf
+		sed "s/^sentinel announce-port.*/sentinel announce-port ${SENTINEL_ANNOUNCE_PORT}/" -i /etc/sentinel.conf
 	fi
 	
 	if [ -z "$SENTINEL_MASTER_SET" ]; then
@@ -50,6 +52,7 @@ if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; the
 	
 	if [ -n "$SENTINEL_MASTER_PASSWORD" ]; then
 		sed "s/^# sentinel auth-pass.*/sentinel auth-pass ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_PASSWORD}/" -i /etc/sentinel.conf
+		sed "s/^sentinel auth-pass.*/sentinel auth-pass ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_PASSWORD}/" -i /etc/sentinel.conf
 	fi
 	
 	# sentinel down-after-milliseconds
