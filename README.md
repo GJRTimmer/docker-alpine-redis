@@ -5,7 +5,10 @@
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
   - [Locations](#locations)
-  - [General Configuration Options ](#general-configuration-options)
+  - [General Configuration Options](#general-configuration-options)
+  - [Master Configuration Options](#master-configuration-options)
+  - [Slave Configuration Options](#slave-configuration-options)
+  - [Sentinel Configuration Options](#sentinel-configuration-options)
 
   <br>
 # Introduction
