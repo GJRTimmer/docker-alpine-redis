@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+set -e
+
+REDIS_DATABASES=${REDIS_DATABASES:-16}
+
+# Set Max Clients
+sed "s/^databases.*/databases ${REDIS_DATABASES}/" -i /etc/redis.conf
