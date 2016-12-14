@@ -1,0 +1,60 @@
+#!/usr/bin/with-contenv bash
+set -e
+
+SENTINEL_IS_ACTIVE=${SENTINEL_IS_ACTIVE:-0}
+SENTINEL_PORT=${SENTINEL_PORT:-26379}
+SENTINEL_ANNOUNCE_IP=${SENTINEL_ANNOUNCE_IP:-}
+SENTINEL_ANNOUNCE_PORT=${SENTINEL_ANNOUNCE_PORT:-}
+SENTINEL_MASTER_SET=${SENTINEL_MASTER_SET:-}
+SENTINEL_MASTER_IP=${SENTINEL_MASTER_IP:-}
+SENTINEL_MASTER_PORT=${SENTINEL_MASTER_PORT:-}
+SENTINEL_MASTER_PASSWORD=${SENTINEL_MASTER_PASSWORD:-}
+SENTINEL_QUOROM=${SENTINEL_QUOROM:-}
+SENTINEL_DOWN_AFTER_MS=${SENTINEL_DOWN_AFTER_MS:-30000}
+SENTINEL_FAILOVER_TIMEOUT=${SENTINEL_FAILOVER_TIMEOUT:-180000}
+
+
+if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; then
+
+	sed "s/^port.*/port ${SENTINEL_PORT}/" -i /etc/sentinel.conf
+	
+	if [ -n "$SENTINEL_ANNOUNCE_IP" ]; then
+		sed "s/^# sentinel announce-ip.*/sentinel announce-ip ${SENTINEL_ANNOUNCE_IP}/" -i /etc/sentinel.conf
+	fi
+	
+	if [ -n "$SENTINEL_ANNOUNCE_PORT" ]; then
+		sed "s/^# sentinel announce-port.*/sentinel announce-port ${SENTINEL_ANNOUNCE_PORT}/" -i /etc/sentinel.conf
+	fi
+	
+	if [ -z "$SENTINEL_MASTER_SET" ]; then
+		echo "Missing SENTINEL_MASTER_SET"
+		exit 1
+	fi
+	
+	if [ -z "$SENTINEL_MASTER_IP" ]; then
+		echo "Missing SENTINEL_MASTER_IP"
+		exit 1
+	fi
+	
+	if [ -z "$SENTINEL_MASTER_PORT" ]; then
+		echo "Missing SENTINEL_MASTER_PORT"
+		exit 1
+	fi
+	
+	if [ -z "$SENTINEL_QUOROM" ]; then
+		echo "Missing SENTINEL_QUOROM"
+		exit 1
+	fi
+	
+	sed "s/^sentinel monitor.*/sentinel monitor ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_IP} ${SENTINEL_MASTER_PORT} ${SENTINEL_QUOROM} /" -i /etc/sentinel.conf
+	
+	if [ -n "$SENTINEL_MASTER_PASSWORD" ]; then
+		sed "s/^# sentinel auth-pass.*/sentinel auth-pass ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_PASSWORD}/" -i /etc/sentinel.conf
+	fi
+	
+	# sentinel down-after-milliseconds
+	sed "s/^sentinel down-after-milliseconds.*/sentinel down-after-milliseconds ${SENTINEL_MASTER_SET} ${SENTINEL_DOWN_AFTER_MS}/" -i /etc/sentinel.conf
+	
+	# sentinel failover-timeout
+	sed "s/^sentinel failover-timeout.*/sentinel failover-timeout ${SENTINEL_MASTER_SET} ${SENTINEL_FAILOVER_TIMEOUT}/" -i /etc/sentinel.conf
+fi
