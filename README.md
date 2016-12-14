@@ -5,20 +5,23 @@
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
   - [Locations](#locations)
-  - [Configuration Options](#configuration-options)
+  - [General Configuration Options ](#general-configuration-options)
 
+  <br>
 # Introduction
 
 Docker image for running Redis, image is based upon Alpine Linux.
 
 Redis is an open source, BSD licensed, advanced key-value cache and store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets, sorted sets, bitmaps and hyperloglogs.
 
+<br>
 # Getting Started
 
 ```bash
 docker pull registry.timmertech.nl/docker/alpine-redis
 ```
 
+<br>
 # Locations
 
 Default Locations:
@@ -29,7 +32,8 @@ Default Locations:
 | Log(s) | /var/log/redis |
 | Unix Socket | /var/run/redis/redis.sock |
 
-# Configuration Options
+<br>
+# General Configuration Options 
 
 | Option | Default | Description |
 |--------|---------|-------------|
@@ -41,3 +45,9 @@ Default Locations:
 | REDIS_MAXCLIENTS | 1024 | Set maximum number of clients |
 | USERMAP_UID | redis | Map ownership to UID |
 | USERMAP_GID | redis | Map ownership to GID |
+
+<br>
+# Slave Configuration Options
+| Option | Default | Description |
+|--------|---------|-------------|
+| REDIS_IS_SLAVE | false | If set to true redis server will become a slave.<br><br>Required Parameters:<br> - REDIS_MASTER<br> - REDIS_MASTER_IP<br> - REDIS_MASTER_PORT<br> |
