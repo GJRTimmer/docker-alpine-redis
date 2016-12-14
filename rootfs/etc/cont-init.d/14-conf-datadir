@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 set -e
 
-REDIS_DATA=${REDIS_DATA:-/var/lib/redis}
+REDIS_DATA=${REDIS_DATA:-\/var\/lib\/redis}
 
 # Set Max Clients
 sed "s/^dir.*/dir ${REDIS_DATA}/" -i /etc/redis.conf
