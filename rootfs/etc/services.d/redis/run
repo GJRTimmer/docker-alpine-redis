@@ -1,8 +1,6 @@
 #!/usr/bin/with-contenv bash
 set -e
 
-REDIS_PASSWORD=${REDIS_PASSWORD:-}
-
 # MAP UID/GID
 USERMAP_UID=${USERMAP_UID:-redis}
 USERMAP_GID=${USERMAP_GID:-redis}
@@ -15,4 +13,4 @@ if [[ $USERMAP_GID != *[[:digit:]]* ]]; then
 	USERMAP_GID=$(id -g $USERMAP_GID)
 fi
 
-exec s6-applyuidgid -u ${USERMAP_UID} -g ${USERMAP_GID} redis-server /etc/redis.conf ${REDIS_PASSWORD:+--requirepass $REDIS_PASSWORD};
+exec s6-applyuidgid -u ${USERMAP_UID} -g ${USERMAP_GID} redis-server /etc/redis.conf

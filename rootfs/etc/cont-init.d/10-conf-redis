@@ -7,6 +7,7 @@ REDIS_KEEPALIVE=${REDIS_KEEPALIVE:-0}
 REDIS_DATA=${REDIS_DATA:-/var/lib/redis}
 REDIS_DATABASES=${REDIS_DATABASES:-16}
 REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-1024}
+REDIS_PASSWORD=${REDIS_PASSWORD:-}
 
 # Set redis port
 sed "s#^port.*#port ${REDIS_PORT}#" -i /etc/redis.conf
@@ -25,3 +26,8 @@ sed "s/^databases.*/databases ${REDIS_DATABASES}/" -i /etc/redis.conf
 
 # Set Max Clients
 sed "s/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/" -i /etc/redis.conf
+
+# Set password
+if [ -n "$REDIS_PASSWORD" ]; then
+	sed "s/^# requirepass.*/requirepass ${REDIS_PASSWORD}/" -i /etc/redis.conf
+fi
