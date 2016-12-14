@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+set -e
+
+REDIS_KEEPALIVE=${REDIS_KEEPALIVE:-0}
+
+# Set Max Clients
+sed "s/^tcp-keepalive.*/tcp-keepalive ${REDIS_KEEPALIVE}/" -i /etc/redis.conf
