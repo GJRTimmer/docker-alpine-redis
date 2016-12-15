@@ -79,7 +79,7 @@ Default(s):
 |--------|---------|----------|-------------|
 | ```SLAVE``` | 0 | - | Mark redis server as slave |
 | ```SLAVE_MHOST``` | - | Yes | IP of master server |
-| ```SLAVE_MPORT``` | 6379 | Yes | Port of the master redis server |
+| ```SLAVE_MPORT``` | 6379 | No | Port of the master redis server |
 | ```SLAVE_MPASS``` | - | No | Password of the master redis server |
 | ```SLAVE_IP``` | - | No | Publish IP of slave, used for docker NAT, ```IP``` is IP to reach container, uses redis ```slave-announce-ip``` |
 | ```SLAVE_PORT``` | - | No | Publish port of slave, used for docker, ````PORT``` is port to reach container, uses redis ```slave-announce-port``` |
