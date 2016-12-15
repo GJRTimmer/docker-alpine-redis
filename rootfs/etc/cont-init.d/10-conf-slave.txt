@@ -1,0 +1,56 @@
+#!/usr/bin/with-contenv bash
+
+SLAVE=${SLAVE:-0}
+SLAVE_MHOST=${SLAVE_MHOST:-}
+SLAVE_MPORT=${SLAVE_MPORT:-}
+SLAVE_MPASS=${SLAVE_MPASS:-}
+SLAVE_IP=${SLAVE_IP:-}
+SLAVE_PORT=${SLAVE_PORT:-}
+
+if (( ${SLAVE} == 1 )) || [ "${SLAVE}" = "true" ]; then
+
+	if [ -z "${SLAVE_MHOST}" ]; then
+		echo "Parameter ${SLAVE_MHOST}"
+		exit 1
+	fi
+	
+	if [ -z "${SLAVE_MPORT}" ]; then
+		echo "Parameter ${SLAVE_MPORT}"
+		exit 1
+	fi
+
+	# mark redis-server as slave
+	sed "s|^\(#[[:blank:]]\)*\(slaveof.*\)|slaveof ${SLAVE_MHOST} ${SLAVE_MPORT}|" -i /etc/redis.conf
+	
+	# set password for master
+	# because we can also be upgraded to master
+	# we also need to set requirepass
+	if [ -n "${SLAVE_MPASS}" ]; then
+		# Set master password
+		sed "s|^\(#[[:blank:]]\)*\(masterauth.*\)|masterauth ${SLAVE_MPASS}|" -i /etc/redis.conf
+		
+		# Also set requirepass to SLAVE_MPASS incase we are upgraded to master
+		sed "s|^\(#[[:blank:]]\)*\(requirepass.*\)|requirepass ${SLAVE_MPASS}|" -i /etc/redis.conf
+	fi
+	
+	# Docker configuration
+	if [ -n "${SLAVE_IP}" ]; then
+		sed "s|^\(#[[:blank:]]\)*\(slave-announce-ip.*\)|slave-announce-ip ${SLAVE_IP}|" -i /etc/redis.conf
+	fi
+	
+	if [ -n "${SLAVE_PORT}" ]; then
+		sed "s|^\(#[[:blank:]]\)*\(slave-announce-port.*\)|slave-announce-port ${SLAVE_PORT}|" -i /etc/redis.conf
+	fi
+	
+else
+
+	# We are configured as master
+	# however we can be downgraded to slave
+	# This means that if we don't set redis 'masterauth' now
+	# we won't be able to login
+	# we use REDIS_PASSWORD for masterauth
+	if [ -n "${REDIS_PASSWORD}" ]; then
+		sed "s|^\(#[[:blank:]]\)*\(masterauth.*\)|masterauth ${SLAVE_MPASS}|" -i /etc/redis.conf
+	fi
+
+fi

@@ -65,10 +65,12 @@ Default Locations:
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| ```REDIS_SLAVE``` | 0 | If set to ```1``` or ```true``` redis server will become a slave.<br><br>Required parameters for slave configuration:<br> - ```REDIS_MASTER_HOST```<br> - ```REDIS_MASTER_PORT```<br> |
-| ```REDIS_MASTER_HOST``` | - | IP of redis master |
-| ```REDIS_MASTER_PORT``` | 6379 | Port number of redis master |
-| ```REDIS_MASTER_PASSWORD``` | - | Password of redis master |
+| ```SLAVE``` | 0 | Mark redis server as slave |
+| ```SLAVE_MHOST``` | - | IP of master server |
+| ```SLAVE_MPORT``` | 6379 | Port of the master redis server |
+| ```SLAVE_MPASS``` | - | Password of the master redis server |
+| ```SLAVE_IP``` | - | Publish IP of slave, used for docker, uses redis ```slave-announce-ip``` |
+| ```SLAVE_PORT | - | Publish port of slave, used for docker, uses rediis ```slave-announce-port``` |
 
 <br>
 # Sentinel Configuration
