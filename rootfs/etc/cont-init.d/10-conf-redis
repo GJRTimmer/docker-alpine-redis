@@ -1,6 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-REDIS_PORT=${REDIS_PORT:-6379}
 REDIS_TIMEOUT=${REDIS_TIMEOUT:-0}
 REDIS_KEEPALIVE=${REDIS_KEEPALIVE:-300}
 REDIS_DATABASES=${REDIS_DATABASES:-16}
@@ -9,9 +8,6 @@ REDIS_PASSWORD=${REDIS_PASSWORD:-}
 REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-10000}
 REDIS_MIN_SLAVES_TO_WRITE=${REDIS_MIN_SLAVES_TO_WRITE:-0}
 REDIS_MIN_SLAVES_MAX_LAG=${REDIS_MIN_SLAVES_MAX_LAG:-10}
-
-# Set redis port
-sed "s|^\(#[[:blank:]]\)*\(port.*\)|port ${REDIS_PORT}|" -i /etc/redis.conf
 
 # Set Timeout
 sed "s|^\(#[[:blank:]]\)*\(timeout.*\)|timeout ${REDIS_TIMEOUT}|" -i /etc/redis.conf
