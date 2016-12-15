@@ -98,3 +98,4 @@ Default(s):
 | ```SENTINEL_MPASS``` | - | No | Password of master redis server |
 | ```SENTINEL_QUORUM``` | - | Yes | Quorum voting value |
 | ```SENTINEL_DOWN_AFTER_MS``` | 30000 | No | Number of milliseconds the master (or any attached slave or sentinel) should<br> be unreachable (as in, not acceptable reply to PING, continuously, for the<br> specified period) in order to consider it in S_DOWN state (Subjectively<br> Down).<br><br> Default is 30 seconds. |
+| ```SENTINEL_PARALLEL_SYNCS``` | 1 | No | How many slaves we can reconfigure to point to the new slave simultaneously<br> during the failover. Use a low number if you use the slaves to serve query<br> to avoid that all the slaves will be unreachable at about the same<br> time while performing the synchronization with the master. |
