@@ -94,7 +94,7 @@ Default(s):
 | ```SENTINEL_PORT``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` |
 | ```SENTINEL_MSET``` | - | Yes | Name of master set |
 | ```SENTINEL_MHOST``` | - | Yes | IP of master redis |
-| ```SENTINEL_MPORT``` | 6379 | No |  Port of master redis server |
+| ```SENTINEL_MPORT``` | 6379 | No | Port of master redis server |
 | ```SENTINEL_MPASS``` | - | No | Password of master redis server |
 | ```SENTINEL_QUORUM``` | - | Yes | Quorum voting value |
 | ```SENTINEL_DOWN_AFTER_MS``` | 30000 | No | Number of milliseconds the master (or any attached slave or sentinel) should<br> be unreachable (as in, not acceptable reply to PING, continuously, for the<br> specified period) in order to consider it in S_DOWN state (Subjectively<br> Down).<br><br> Default is 30 seconds. |
