@@ -7,6 +7,8 @@ REDIS_DATABASES=${REDIS_DATABASES:-16}
 REDIS_DATA=${REDIS_DATA:-/var/lib/redis}
 REDIS_PASSWORD=${REDIS_PASSWORD:-}
 REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-10000}
+REDIS_MIN_SLAVES_TO_WRITE=${REDIS_MIN_SLAVES_TO_WRITE:-0}
+REDIS_MIN_SLAVES_MAX_LAG=${REDIS_MIN_SLAVES_MAX_LAG:-10}
 
 # Set redis port
 sed "s|^\(#[[:blank:]]\)*\(port.*\)|port ${REDIS_PORT}|" -i /etc/redis.conf
@@ -30,3 +32,9 @@ fi
 
 # Set Max Clients
 sed "s|^\(#[[:blank:]]\)*\(maxclients.*\)|maxclients ${REDIS_MAXCLIENTS}|" -i /etc/redis.conf
+
+# min-slaves-to-write
+sed "s|^\(#[[:blank:]]\)*\(min-slaves-to-write.*\)|min-slaves-to-write ${REDIS_MIN_SLAVES_TO_WRITE}|" -i /etc/redis.conf
+
+# min-slaves-max-lag
+sed "s|^\(#[[:blank:]]\)*\(min-slaves-max-lag.*\)|min-slaves-max-lag ${REDIS_MIN_SLAVES_MAX_LAG}|" -i /etc/redis.conf

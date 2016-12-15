@@ -57,14 +57,8 @@ Default Locations:
 | ```REDIS_DATA``` | /var/lib/redis | Data directory of redis |
 | ```REDIS_PASSWORD``` | - | Redis password |
 | ```REDIS_MAXCLIENTS``` | 10000 | Max connected clients | 
-
-<br>
-# Master Configuration Options
-
-| Option | Default | Description |
-|--------|---------|-------------|
-| ```REDIS_MIN_SLAVES_TO_WRITE``` | 0 | It is possible for a master to stop accepting writes if there are less than<br> N slaves connected, having a lag less or equal than M seconds.<br><br> The N slaves need to be in "online" state.<br><br> The lag in seconds, that must be <= the specified value, is calculated from<br> the last ping received from the slave, that is usually sent every second.<br><br> This option does not GUARANTEE that N replicas will accept the write, but<br> will limit the window of exposure for lost writes in case not enough slaves<br> are available, to the specified number of seconds.<br><br> For example to require at least 3 slaves with a lag <= 10 seconds use:<br><br> min-slaves-to-write 3<br> min-slaves-max-lag 10<br><br> Setting one or the other to 0 disables the feature.<br><br> By default min-slaves-to-write is set to 0 (feature disabled) and<br> min-slaves-max-lag is set to 10. |
-| ```REDIS_MIN_SLAVES_MAX_LAG``` | 10 | See REDIS_MIN_SLAVES_TO_WRITE, only set when REDIS_MIN_SLAVES_TO_WRITE is set | 
+| ```REDIS_MIN_SLAVES_TO_WRITE``` | 1 | It is possible for a master to stop accepting writes if there are less than<br>N slaves connected, having a lag less or equal than M seconds. |
+| ```REDIS_MIN_SLAVES_MAX_LAG``` | 10 | It is possible for a master to stop accepting writes if there are less than<br>N slaves connected, having a lag less or equal than M seconds. |
 
 <br>
 # Slave Configuration Options
