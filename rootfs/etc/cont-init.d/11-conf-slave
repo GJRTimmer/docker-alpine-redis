@@ -53,4 +53,18 @@ else
 		sed "s|^\(#[[:blank:]]\)*\(masterauth.*\)|masterauth ${REDIS_PASSWORD}|" -i /etc/redis.conf
 	fi
 
+	# we are master
+	# however we can be downgraded to slave
+	# make sure we announce our self correctly
+	if [ -n "${SLAVE_IP}" ]; then
+		sed "s|^\(#[[:blank:]]\)*\(slave-announce-ip.*\)|slave-announce-ip ${SLAVE_IP}|" -i /etc/redis.conf
+	fi
+	
+	# we are master
+	# however we can be downgraded to slave
+	# make sure we announce our self correctly
+	if [ -n "${SLAVE_PORT}" ]; then
+		sed "s|^\(#[[:blank:]]\)*\(slave-announce-port.*\)|slave-announce-port ${SLAVE_PORT}|" -i /etc/redis.conf
+	fi
+	
 fi
