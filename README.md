@@ -1,6 +1,6 @@
 [![build status](https://gitlab.timmertech.nl/docker/alpine-redis/badges/master/build.svg)](https://gitlab.timmertech.nl/docker/alpine-redis/commits/master)
 
-# docker/alpine-redis
+# docker/alpine-redis:3.2.5
 
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
