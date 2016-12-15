@@ -90,13 +90,3 @@ Default(s):
 | Option | Default | Required | Description |
 |--------|---------|----------|-------------|
 | ```SENTINEL``` | 0 | - | Activate redis-server sentinel |
-| ```SENTINEL_IP``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` | 
-| ```SENTINEL_PORT``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` |
-| ```SENTINEL_MSET``` | - | Yes | Name of master set |
-| ```SENTINEL_MHOST``` | - | Yes | IP of master redis |
-| ```SENTINEL_MPORT``` | 6379 | No | Port of master redis server |
-| ```SENTINEL_MPASS``` | - | No | Password of master redis server |
-| ```SENTINEL_QUORUM``` | - | Yes | Quorum voting value |
-| ```SENTINEL_DOWN_AFTER_MS``` | 30000 | No | Number of milliseconds the master (or any attached slave or sentinel) should<br> be unreachable (as in, not acceptable reply to PING, continuously, for the<br> specified period) in order to consider it in S_DOWN state (Subjectively<br> Down).<br><br> Default is 30 seconds. |
-| ```SENTINEL_PARALLEL_SYNCS``` | 1 | No | How many slaves we can reconfigure to point to the new slave simultaneously<br> during the failover. Use a low number if you use the slaves to serve query<br> to avoid that all the slaves will be unreachable at about the same<br> time while performing the synchronization with the master. |
-| ```SENTINEL_FAILOVER_TIMEOUT``` | 180000 | No | Specifies the failover timeout in milliseconds. It is used in many ways:<br><br> - The time needed to re-start a failover after a previous failover was<br>   already tried against the same master by a given Sentinel, is two<br>   times the failover timeout.<br><br> - The time needed for a slave replicating to a wrong master according<br>   to a Sentinel current configuration, to be forced to replicate<br>   with the right master, is exactly the failover timeout (counting since<br>   the moment a Sentinel detected the misconfiguration).<br><br> - The time needed to cancel a failover that is already in progress but<br>   did not produced any configuration change (SLAVEOF NO ONE yet not<br>   acknowledged by the promoted slave).<br><br> - The maximum time a failover in progress waits for all the slaves to be<br>   reconfigured as slaves of the new master. However even after this time<br>   the slaves will be reconfigured by the Sentinels anyway, but not with<br>   the exact parallel-syncs progression as specified.<br><br> Default is 3 minutes. |
