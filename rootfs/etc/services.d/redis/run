@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-echo "REDIS: ${REDIS}"
+REDIS=${REDIS:-1}
 
 if (( ${REDIS} == 1 )) || [ "${REDIS}" = "true" ]; then
 	# MAP UID/GID

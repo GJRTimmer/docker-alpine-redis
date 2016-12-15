@@ -1,5 +1,6 @@
 #!/usr/bin/with-contenv bash
-set -e
+
+SENTINEL_IS_ACTIVE=${SENTINEL_IS_ACTIVE:-0}
 
 if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; then
 	# MAP UID/GID
