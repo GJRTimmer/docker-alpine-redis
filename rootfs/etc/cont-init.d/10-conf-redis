@@ -1,5 +1,4 @@
 #!/usr/bin/with-contenv bash
-set -e
 
 REDIS_PORT=${REDIS_PORT:-6379}
 REDIS_TIMEOUT=${REDIS_TIMEOUT:-0}
