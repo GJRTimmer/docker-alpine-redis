@@ -94,3 +94,6 @@ Default(s):
 | ```SENTINEL_PORT``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` |
 | ```SENTINEL_MSET``` | - | Yes | Name of master set |
 | ```SENTINEL_MHOST``` | - | Yes | IP of master redis |
+| ```SENTINEL_MPORT``` | 6379 | No | Port of master redis server |
+| ```SENTINEL_MPASS``` | - | No | Password of master redis server |
+| ```SENTINEL_QUORUM``` | - | Yes | Quorum voting value |
