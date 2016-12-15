@@ -1,0 +1,26 @@
+version: '2'
+services:
+    redis-slave-sentinel:
+    container_name: redis-slave-sentinel
+    restart: always
+    image: registry.timmertech.nl/docker/alpine-redis:latest
+    hostname: slave-sentinel
+    ports:
+      - 6380:6379
+      - 26380:26379
+    environment:
+      - REDIS=1
+      - SLAVE=1
+      - SLAVE_MHOST=<IP>
+      - SLAVE_MPASS=password
+      - SLAVE_IP=<IP>
+      - SLAVE_PORT=6380
+      - SENTINEL=1
+      - SENTINEL_IP=<IP>
+      - SENTINEL_PORT=26380
+      - SENTINEL_MSET=rmaster
+      - SENTINEL_MHOST=<IP>
+      - SENTINEL_MPASS=password
+      - SENTINEL_QUORUM=2
+      - SENTINEL_DOWN_AFTER_MS=15000
+      - SENTINEL_FAILOVER_TIMEOUT=30000

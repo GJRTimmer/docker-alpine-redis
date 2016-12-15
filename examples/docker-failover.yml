@@ -11,13 +11,13 @@ services:
     environment:
       - REDIS=1
       - REDIS_PASSWORD=password
-      - SLAVE_IP=192.168.0.5
+      - SLAVE_IP=<IP>
       - SLAVE_PORT=6379
       - SENTINEL=1
-      - SENTINEL_IP=192.168.0.5
+      - SENTINEL_IP=<IP>
       - SENTINEL_PORT=26379
       - SENTINEL_MSET=rmaster
-      - SENTINEL_MHOST=192.168.0.5
+      - SENTINEL_MHOST=<IP>
       - SENTINEL_MPASS=password
       - SENTINEL_QUORUM=2
       - SENTINEL_DOWN_AFTER_MS=15000
@@ -35,15 +35,15 @@ services:
     environment:
       - REDIS=1
       - SLAVE=1
-      - SLAVE_MHOST=192.168.0.5
+      - SLAVE_MHOST=<IP>
       - SLAVE_MPASS=password
-      - SLAVE_IP=192.168.0.5
+      - SLAVE_IP=<IP>
       - SLAVE_PORT=6380
       - SENTINEL=1
-      - SENTINEL_IP=192.168.0.5
+      - SENTINEL_IP=<IP>
       - SENTINEL_PORT=26380
       - SENTINEL_MSET=rmaster
-      - SENTINEL_MHOST=192.168.0.5
+      - SENTINEL_MHOST=<IP>
       - SENTINEL_MPASS=password
       - SENTINEL_QUORUM=2
       - SENTINEL_DOWN_AFTER_MS=15000
@@ -61,35 +61,15 @@ services:
     environment:
       - REDIS=1
       - SLAVE=1
-      - SLAVE_MHOST=192.168.0.5
+      - SLAVE_MHOST=<IP>
       - SLAVE_MPASS=password
-      - SLAVE_IP=192.168.0.5
+      - SLAVE_IP=<IP>
       - SLAVE_PORT=6381
       - SENTINEL=1
-      - SENTINEL_IP=192.168.0.5
+      - SENTINEL_IP=<IP>
       - SENTINEL_PORT=26381
       - SENTINEL_MSET=rmaster
-      - SENTINEL_MHOST=192.168.0.5
-      - SENTINEL_MPASS=password
-      - SENTINEL_QUORUM=2
-      - SENTINEL_DOWN_AFTER_MS=15000
-      - SENTINEL_FAILOVER_TIMEOUT=30000
-  redis-sentinel-4:
-    container_name: redis-sentinel-4
-    restart: always
-    image: registry.timmertech.nl/docker/alpine-redis:latest
-    hostname: sentinel4
-    depends_on:
-      - redis-master
-    ports:
-      - 26382:26379
-    environment:
-      - REDIS=0
-      - SENTINEL=1
-      - SENTINEL_IP=192.168.0.5
-      - SENTINEL_PORT=26382
-      - SENTINEL_MSET=rmaster
-      - SENTINEL_MHOST=192.168.0.5
+      - SENTINEL_MHOST=<IP>
       - SENTINEL_MPASS=password
       - SENTINEL_QUORUM=2
       - SENTINEL_DOWN_AFTER_MS=15000

@@ -2,7 +2,7 @@
 .gitignore
 .gitlab-ci.yml
 CHANGELOG.md
-docker-compose.yml
+examples/
 LICENSE
 README.md
 REPOSITORY

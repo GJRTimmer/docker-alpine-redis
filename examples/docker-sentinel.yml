@@ -1,0 +1,20 @@
+version: '2'
+services:
+  redis-sentinel:
+    container_name: redis-sentinel
+    restart: always
+    image: registry.timmertech.nl/docker/alpine-redis:latest
+    hostname: sentinel
+    ports:
+      - 26382:26379
+    environment:
+      - REDIS=0
+      - SENTINEL=1
+      - SENTINEL_IP=<IP>
+      - SENTINEL_PORT=26382
+      - SENTINEL_MSET=rmaster
+      - SENTINEL_MHOST=<IP>
+      - SENTINEL_MPASS=password
+      - SENTINEL_QUORUM=2
+      - SENTINEL_DOWN_AFTER_MS=15000
+      - SENTINEL_FAILOVER_TIMEOUT=30000

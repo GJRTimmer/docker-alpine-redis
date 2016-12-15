@@ -4,12 +4,13 @@
 
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
+  - [Examples](#examples)
   - [Locations](#locations)
   - [General Configuration](#general-configuration)
   - [Redis Configuration](#redis-configuration)
   - [Slave Configuration](#slave-configuration)
   - [Sentinel Configuration](#sentinel-configuration)
-
+  
   <br>
 # Introduction
 
@@ -23,6 +24,16 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
 ```bash
 docker pull registry.timmertech.nl/docker/alpine-redis
 ```
+
+<br>
+# Examples
+ - [standalone redis](examples/docker-redis.yml)
+ - [standalone master](examples/docker-master.yml)
+ - [standalone slave](examples/docker-slave.yml)
+ - [standalone sentinel](examples/docker-sentinel.yml)
+ - [master with sentinel](examples/docker-master-sentinel.yml)
+ - [slave with sentinel](examples/docker-slave-sentinel.yml)
+ - [basic failover setup, 3x redis, 3x sentinel(s)](examples/docker-failover.yml)
 
 <br>
 # Locations

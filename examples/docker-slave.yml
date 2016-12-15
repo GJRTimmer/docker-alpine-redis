@@ -1,0 +1,16 @@
+version: '2'
+services:
+  redis-slave:
+    container_name: redis-slave
+    restart: always
+    image: registry.timmertech.nl/docker/alpine-redis:latest
+    hostname: slave
+    ports:
+      - 6380:6379
+    environment:
+      - REDIS=1
+      - SLAVE=1
+      - SLAVE_MHOST=<IP>
+      - SLAVE_MPASS=password
+      - SLAVE_IP=<IP>
+      - SLAVE_PORT=6380

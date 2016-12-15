@@ -1,0 +1,12 @@
+version: '2'
+services:
+  redis:
+    container_name: redis
+    restart: always
+    image: registry.timmertech.nl/docker/alpine-redis:latest
+    hostname: redis
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS=1
+      - REDIS_PASSWORD=password
