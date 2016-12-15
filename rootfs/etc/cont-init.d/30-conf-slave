@@ -22,7 +22,7 @@ if (( ${REDIS_SLAVE} == 1 )) || [ "${REDIS_SLAVE}" = "true" ]; then
 	
 	if [ -n "$REDIS_SLAVE_ANNOUNCE_IP" ]; then
 		sed "s/^# slave-announce-ip.*/slave-announce-ip ${REDIS_SLAVE_ANNOUNCE_IP}/" -i /etc/redis.conf
-	sed "s/^slave-announce-ip.*/slave-announce-ip ${REDIS_SLAVE_ANNOUNCE_IP}/" -i /etc/redis.conf
+		sed "s/^slave-announce-ip.*/slave-announce-ip ${REDIS_SLAVE_ANNOUNCE_IP}/" -i /etc/redis.conf
 	fi
 	
 	if [ -n "$REDIS_SLAVE_ANNOUNCE_PORT" ]; then
