@@ -1,19 +1,21 @@
 #!/usr/bin/with-contenv bash
 set -e
 
-# MAP UID/GID
-USERMAP_UID=${USERMAP_UID:-redis}
-USERMAP_GID=${USERMAP_GID:-redis}
+if (( ${REDIS} == 1 )) || [ "${REDIS}" = "true" ]; then
+	# MAP UID/GID
+	USERMAP_UID=${USERMAP_UID:-redis}
+	USERMAP_GID=${USERMAP_GID:-redis}
 
-if [[ $USERMAP_UID != *[[:digit:]]* ]]; then
-	USERMAP_UID=$(id -u $USERMAP_UID)
+	if [[ $USERMAP_UID != *[[:digit:]]* ]]; then
+		USERMAP_UID=$(id -u $USERMAP_UID)
+	fi
+
+	if [[ $USERMAP_GID != *[[:digit:]]* ]]; then
+		USERMAP_GID=$(id -g $USERMAP_GID)
+	fi
+
+	chown ${USERMAP_UID}:${USERMAP_GID} /etc/redis.conf
+	chmod 0775 /etc/redis.conf
+
+	exec s6-applyuidgid -u ${USERMAP_UID} -g ${USERMAP_GID} redis-server /etc/redis.conf
 fi
-
-if [[ $USERMAP_GID != *[[:digit:]]* ]]; then
-	USERMAP_GID=$(id -g $USERMAP_GID)
-fi
-
-chown ${USERMAP_UID}:${USERMAP_GID} /etc/redis.conf
-chmod 0775 /etc/redis.conf
-
-exec s6-applyuidgid -u ${USERMAP_UID} -g ${USERMAP_GID} redis-server /etc/redis.conf
