@@ -15,11 +15,11 @@ SENTINEL_FAILOVER_TIMEOUT=${SENTINEL_FAILOVER_TIMEOUT:-180000}
 if (( ${SENTINEL} == 1 )) || [ "${SENTINEL}" = "true" ]; then
 
 	if [ -n "${SENTINEL_IP}" ]; then
-		sed "s|^\(#[[:blank:]]\)*\(timeout.*\)|timeout ${SENTINEL_IP}|" -i /etc/sentinel.conf
+		sed "s|^\(#[[:blank:]]\)*\(sentinel announce-ip.*\)|sentinel announce-ip ${SENTINEL_IP}|" -i /etc/sentinel.conf
 	fi
 	
 	if [ -n "${SENTINEL_PORT}" ]; then
-		sed "s|^\(#[[:blank:]]\)*\(timeout.*\)|timeout ${SENTINEL_PORT}|" -i /etc/sentinel.conf
+		sed "s|^\(#[[:blank:]]\)*\(sentinel announce-port.*\)|sentinel announce-port ${SENTINEL_PORT}|" -i /etc/sentinel.conf
 	fi
 	
 	if [ -z "${SENTINEL_MSET}" ]; then
