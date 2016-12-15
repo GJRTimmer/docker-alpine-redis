@@ -5,10 +5,10 @@
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
   - [Locations](#locations)
-  - [General Configuration Options](#general-configuration-options)
-  - [Master Configuration Options](#master-configuration-options)
-  - [Slave Configuration Options](#slave-configuration-options)
-  - [Sentinel Configuration Options](#sentinel-configuration-options)
+  - [General Configuration](#general-configuration)
+  - [Redis Configuration](#redis-configuration)
+  - [Slave Configuration](#slave-configuration)
+  - [Sentinel Configuration](#sentinel-configuration)
 
   <br>
 # Introduction
@@ -27,10 +27,12 @@ docker pull registry.timmertech.nl/docker/alpine-redis
 <br>
 # Locations
 
-Default Locations:
+Default(s):
 
-| Type | Location |
+| Type | Default |
 |------|----------|
+| Redis Port | 6379 |
+| Sentinel Port | 26379 |
 | Data | /var/lib/redis |
 | Log(s) | /var/log/redis |
 | Unix Socket | /var/run/redis/redis.sock |
@@ -46,11 +48,10 @@ Default Locations:
 | ```USERMAP_GID``` | redis | Map ownership to GID |
 
 <br>
-# Redis Configuration Options 
+# Redis Configuration
 | Option | Default | Description |
 |--------|---------|-------------|
 | ```REDIS``` | ```1 / true``` | Activate Redis Server |
-| ```REDIS_PORT``` | 6379 | Redis port |
 | ```REDIS_TIMEOUT``` | 0 | Close the connection after a client is idle for N seconds (0 to disable) |
 | ```REDIS_KEEPALIVE``` | 300 | TCP keepalive.<br><br>If non-zero, use SO_KEEPALIVE to send TCP ACKs to clients in absence<br>of communication. This is useful for two reasons:<br><br>1) Detect dead peers.<br>2) Take the connection alive from the point of view of network<br>   equipment in the middle.<br><br>On Linux, the specified value (in seconds) is the period used to send ACKs.<br>Note that to close the connection the double of the time is needed.<br>On other kernels the period depends on the kernel configuration.<br><br>A reasonable value for this option is 300 seconds, which is the new<br>Redis default starting with Redis 3.2.1. | 
 | ```REDIS_DATABASES``` | 16 | Number of redis databases | 
@@ -61,7 +62,7 @@ Default Locations:
 | ```REDIS_MIN_SLAVES_MAX_LAG``` | 10 | It is possible for a master to stop accepting writes if there are less than<br>N slaves connected, having a lag less or equal than M seconds. |
 
 <br>
-# Slave Configuration Options
+# Slave Configuration
 
 | Option | Default | Description |
 |--------|---------|-------------|
@@ -69,26 +70,22 @@ Default Locations:
 | ```SLAVE_MHOST``` | - | IP of master server |
 | ```SLAVE_MPORT``` | 6379 | Port of the master redis server |
 | ```SLAVE_MPASS``` | - | Password of the master redis server |
-| ```SLAVE_IP``` | - | Publish IP of slave, used for docker, uses redis ```slave-announce-ip``` |
-| ```SLAVE_PORT | - | Publish port of slave, used for docker, uses rediis ```slave-announce-port``` |
+| ```SLAVE_IP``` | - | Publish IP of slave, used for docker NAT, ```IP``` is IP to reach container, uses redis ```slave-announce-ip``` |
+| ```SLAVE_PORT``` | - | Publish port of slave, used for docker, ````PORT``` is port to reach container, uses redis ```slave-announce-port``` |
 
 <br>
 # Sentinel Configuration
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| ```SENTINEL_IS_ACTIVE``` | 0 | If set to ```1``` or ```true``` will start sentinel with provided configuration |
-| ```SENTINEL_PORT``` | 26379 | Port on which sentinel is running |
-| ```SENTINEL_ANNOUNCE_IP``` | - | When announce-ip is provided, the Sentinel will claim the specified IP address<br> in HELLO messages used to gossip its presence, instead of auto-detecting the<br> local address as it usually does.<br><br> Similarly when announce-port is provided and is valid and non-zero, Sentinel<br> will announce the specified TCP port.<br><br> The two options don't need to be used together, if only announce-ip is<br> provided, the Sentinel will announce the specified IP and the server port<br> as specified by the "port" option. If only announce-port is provided, the<br> Sentinel will announce the auto-detected local IP and the specified port. |
-| ```SENTINEL_ANNOUNCE_PORT``` | - | See ```SENTINEL_ANNOUNCE_IP``` |
-| ```SENTINEL_MASTER_SET``` | - | Name of the master set to monitor |
-| ```SENTINEL_MASTER_IP``` | - | IP of redis master |
-| ```SENTINEL_MASTER_PORT``` | - | Port of redis master to monitor |
-| ```SENTINEL_MASTER_PASSWORD``` | - | Redis master password |
+| ```SENTINEL``` | 0 | Activate redis-server sentinel |
+| ```SENTINEL_IP``` | - | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` | 
+| ```SENTINEL_PORT``` | - | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` |
+| ```SENTINEL_MSET``` | - | Name of master set |
+| ```SENTINEL_MHOST``` | 6379 | IP of master redis |
+| ```SENTINEL_MPORT``` | - | Port of master redis server |
+| ```SENTINEL_MPASS``` | - | Password of master redis server |
 | ```SENTINEL_QUORUM``` | - | Quorum voting value |
 | ```SENTINEL_DOWN_AFTER_MS``` | 30000 | Number of milliseconds the master (or any attached slave or sentinel) should<br> be unreachable (as in, not acceptable reply to PING, continuously, for the<br> specified period) in order to consider it in S_DOWN state (Subjectively<br> Down).<br><br> Default is 30 seconds. |
+| ```SENTINEL_PARALLEL_SYNCS | 1 | How many slaves we can reconfigure to point to the new slave simultaneously<br> during the failover. Use a low number if you use the slaves to serve query<br> to avoid that all the slaves will be unreachable at about the same<br> time while performing the synchronization with the master. |
 | ```SENTINEL_FAILOVER_TIMEOUT``` | 180000 | Specifies the failover timeout in milliseconds. It is used in many ways:<br><br> - The time needed to re-start a failover after a previous failover was<br>   already tried against the same master by a given Sentinel, is two<br>   times the failover timeout.<br><br> - The time needed for a slave replicating to a wrong master according<br>   to a Sentinel current configuration, to be forced to replicate<br>   with the right master, is exactly the failover timeout (counting since<br>   the moment a Sentinel detected the misconfiguration).<br><br> - The time needed to cancel a failover that is already in progress but<br>   did not produced any configuration change (SLAVEOF NO ONE yet not<br>   acknowledged by the promoted slave).<br><br> - The maximum time a failover in progress waits for all the slaves to be<br>   reconfigured as slaves of the new master. However even after this time<br>   the slaves will be reconfigured by the Sentinels anyway, but not with<br>   the exact parallel-syncs progression as specified.<br><br> Default is 3 minutes. |
-
-
-
-
