@@ -1,0 +1,61 @@
+#!/usr/bin/with-contenv bash
+
+SENTINEL=${SENTINEL-:0}
+SENTINEL_IP=${SENTINEL_IP:-}
+SENTINEL_PORT=${SENTINEL_PORT:-}
+SENTINEL_MSET=${SENTINEL_MSET:-}
+SENTINEL_MHOST=${SENTINEL_MHOST:-}
+SENTINEL_MPORT=${SENTINEL_MPORT:-6379}
+SENTINEL_MPASS=${SENTINEL_MPASS:-}
+SENTINEL_QUORUM=${SENTINEL_QUORUM:-}
+SENTINEL_DOWN_AFTER_MS=${SENTINEL_DOWN_AFTER_MS:-30000}
+SENTINEL_PARALLEL_SYNCS=${SENTINEL_PARALLEL_SYNCS:-1}
+SENTINEL_FAILOVER_TIMEOUT=${SENTINEL_FAILOVER_TIMEOUT:-180000}
+
+if (( ${SENTINEL} == 1 )) || [ "${SENTINEL}" = "true" ]; then
+
+	if [ -n "${SENTINEL_IP}" ]; then
+		sed "s|^\(#[[:blank:]]\)*\(timeout.*\)|timeout ${SENTINEL_IP}|" -i /etc/sentinel.conf
+	fi
+	
+	if [ -n "${SENTINEL_PORT}" ]; then
+		sed "s|^\(#[[:blank:]]\)*\(timeout.*\)|timeout ${SENTINEL_PORT}|" -i /etc/sentinel.conf
+	fi
+	
+	if [ -z "${SENTINEL_MSET}" ]; then
+		echo "Environment parameter missing SENTINEL_MSET"
+		exit 1
+	fi
+	
+	if [ -z "${SENTINEL_MHOST}" ]; then
+		echo "Environment parameter missing SENTINEL_MHOST"
+		exit 1
+	fi
+	
+	if [ -z "${SENTINEL_MPORT}" ]; then
+		echo "Environment parameter missing SENTINEL_MPORT"
+		exit 1
+	fi
+	
+	if [ -z "${SENTINEL_QUORUM}" ]; then
+		echo "Environment parameter missing SENTINEL_QUORUM"
+		exit 1
+	fi
+	
+	# sentinel monitor master
+	sed "s/^sentinel monitor.*/sentinel monitor ${SENTINEL_MSET} ${SENTINEL_MHOST} ${SENTINEL_MPORT} ${SENTINEL_QUORUM} /" -i /etc/sentinel.conf
+	
+	# set sentinel password for redis master
+	if [ -n "${SENTINEL_MPASS}" ]; then
+		sed "s|^\(#[[:blank:]]\)*\(sentinel auth-pass.*\)|sentinel auth-pass ${SENTINEL_MSET} ${SENTINEL_MPASS}|" -i /etc/sentinel.conf
+	fi
+	
+	# down-after-milliseconds
+	sed "s|^\(#[[:blank:]]\)*\(sentinel down-after-milliseconds.*\)|sentinel down-after-milliseconds ${SENTINEL_MSET} ${SENTINEL_DOWN_AFTER_MS}|" -i /etc/sentinel.conf
+	
+	# sentinel parallel-syncs
+	sed "s|^\(#[[:blank:]]\)*\(sentinel parallel-syncs.*\)|sentinel parallel-syncs ${SENTINEL_MSET} ${SENTINEL_PARALLEL_SYNCS}|" -i /etc/sentinel.conf
+	
+	# sentinel failover-timeout
+	sed "s|^\(#[[:blank:]]\)*\(sentinel failover-timeout.*\)|sentinel failover-timeout ${SENTINEL_MSET} ${SENTINEL_FAILOVER_TIMEOUT}|" -i /etc/sentinel.conf
+fi
