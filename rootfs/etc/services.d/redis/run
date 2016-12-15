@@ -1,5 +1,7 @@
 #!/usr/bin/with-contenv bash
 
+echo "REDIS: ${REDIS}"
+
 if (( ${REDIS} == 1 )) || [ "${REDIS}" = "true" ]; then
 	# MAP UID/GID
 	USERMAP_UID=${USERMAP_UID:-redis}
