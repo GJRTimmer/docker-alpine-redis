@@ -59,3 +59,20 @@ if (( ${SENTINEL} == 1 )) || [ "${SENTINEL}" = "true" ]; then
 	# sentinel failover-timeout
 	sed "s|^\(#[[:blank:]]\)*\(sentinel failover-timeout.*\)|sentinel failover-timeout ${SENTINEL_MSET} ${SENTINEL_FAILOVER_TIMEOUT}|" -i /etc/sentinel.conf
 fi
+
+# Failover cleanup
+# Its possible that we are rebooting from a failover
+# this means that the configuration within /etc/sentinel.conf might not be accurate
+# this is certain when we were master
+# 
+# If we were master and failed then we have additional known-slaves in the config
+# we need to clean this up
+
+# Clean all slaves
+sed "s/^sentinel known-slave.*//g" -i /etc/sentinel.conf
+
+# Clean all sentinel(s)
+sed "s/^sentinel known-sentinel.*//g" -i /etc/sentinel.conf
+
+# Clean curren-epoch
+sed "s/^sentinel current-epoch.*//g" -i /etc/sentinel.conf
