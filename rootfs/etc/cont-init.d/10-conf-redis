@@ -3,32 +3,31 @@ set -e
 
 REDIS_PORT=${REDIS_PORT:-6379}
 REDIS_TIMEOUT=${REDIS_TIMEOUT:-0}
-REDIS_KEEPALIVE=${REDIS_KEEPALIVE:-0}
-REDIS_DATA=${REDIS_DATA:-/var/lib/redis}
+REDIS_KEEPALIVE=${REDIS_KEEPALIVE:-300}
 REDIS_DATABASES=${REDIS_DATABASES:-16}
-REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-1024}
+REDIS_DATA=${REDIS_DATA:-/var/lib/redis}
 REDIS_PASSWORD=${REDIS_PASSWORD:-}
+REDIS_MAXCLIENTS=${REDIS_MAXCLIENTS:-10000}
 
 # Set redis port
-sed "s#^port.*#port ${REDIS_PORT}#" -i /etc/redis.conf
+sed "s|^\(#[[:blank:]]\)*\(port.*\)|port ${REDIS_PORT}|" -i /etc/redis.conf
 
 # Set Timeout
-sed "s/^timeout.*/timeout ${REDIS_TIMEOUT}/" -i /etc/redis.conf
+sed "s|^\(#[[:blank:]]\)*\(timeout.*\)|timeout ${REDIS_TIMEOUT}|" -i /etc/redis.conf
 
 # Set TCP KeepAlive
-sed "s/^tcp-keepalive.*/tcp-keepalive ${REDIS_KEEPALIVE}/" -i /etc/redis.conf
-
-# Set data directory
-sed "s#^dir.*#dir ${REDIS_DATA}#" -i /etc/redis.conf
+sed "s|^\(#[[:blank:]]\)*\(tcp-keepalive.*\)|tcp-keepalive ${REDIS_KEEPALIVE}|" -i /etc/redis.conf
 
 # Set databases
-sed "s/^databases.*/databases ${REDIS_DATABASES}/" -i /etc/redis.conf
+sed "s|^\(#[[:blank:]]\)*\(databases.*\)|databases ${REDIS_DATABASES}|" -i /etc/redis.conf
 
-# Set Max Clients
-sed "s/^maxclients.*/maxclients ${REDIS_MAXCLIENTS}/" -i /etc/redis.conf
+# Set data directory
+sed "s|^\(#[[:blank:]]\)*\(dir.*\)|dir ${REDIS_DATA}|" -i /etc/redis.conf
 
 # Set password
-if [ -n "$REDIS_PASSWORD" ]; then
-	sed "s/^# requirepass.*/requirepass ${REDIS_PASSWORD}/" -i /etc/redis.conf
-	sed "s/^requirepass.*/requirepass ${REDIS_PASSWORD}/" -i /etc/redis.conf
+if [ -n "${REDIS_PASSWORD}" ]; then
+	sed "s|^\(#[[:blank:]]\)*\(requirepass.*\)|requirepass ${REDIS_PASSWORD}|" -i /etc/redis.conf
 fi
+
+# Set Max Clients
+sed "s|^\(#[[:blank:]]\)*\(maxclients.*\)|maxclients ${REDIS_MAXCLIENTS}|" -i /etc/redis.conf

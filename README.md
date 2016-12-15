@@ -36,19 +36,27 @@ Default Locations:
 | Unix Socket | /var/run/redis/redis.sock |
 
 <br>
-# General Configuration Options 
+# General Configuration
 
 | Option | Default | Description |
 |--------|---------|-------------|
-| ```REDIS_PORT``` | 6379 | Redis port |
-| ```REDIS_TIMEOUT``` | 0 | Close the connection after a client is idle for N seconds (0 to disable) |
-| ```REDIS_KEEPALIVE``` | 0 | # If non-zero, use SO_KEEPALIVE to send TCP ACKs to clients in absence <br> of communication. This is useful for two reasons: <br><br> 1) Detect dead peers.<br> 2) Take the connection alive from the point of view of network<br>    equipment in the middle.<br><br> On Linux, the specified value (in seconds) is the period used to send ACKs.<br> Note that to close the connection the double of the time is needed.<br> On other kernels the period depends on the kernel configuration.<br><br> A reasonable value for this option is 60 seconds. |
-| ```REDIS_DATA``` | /var/lib/redis | Data directory of redis |
-| ```REDIS_DATABASES``` | 16 | Number of redis databases | 
-| ```REDIS_PASSWORD``` | - | Password authentication |
-| ```REDIS_MAXCLIENTS``` | 1024 | Set maximum number of clients |
+| ```REDIS``` | ```1 / true``` | Activate Redis Server |
+| ``` SENTINEL``` | ```0 / false``` | Activate Redis Sentinel |
 | ```USERMAP_UID``` | redis | Map ownership to UID |
 | ```USERMAP_GID``` | redis | Map ownership to GID |
+
+<br>
+# Redis Configuration Options 
+| Option | Default | Description |
+|--------|---------|-------------|
+| ```REDIS``` | ```1 / true``` | Activate Redis Server |
+| ```REDIS_PORT``` | 6379 | Redis port |
+| ```REDIS_TIMEOUT``` | 0 | Close the connection after a client is idle for N seconds (0 to disable) |
+| ```REDIS_KEEPALIVE``` | 300 | TCP keepalive.<br><br>If non-zero, use SO_KEEPALIVE to send TCP ACKs to clients in absence<br>of communication. This is useful for two reasons:<br><br>1) Detect dead peers.<br>2) Take the connection alive from the point of view of network<br>   equipment in the middle.<br><br>On Linux, the specified value (in seconds) is the period used to send ACKs.<br>Note that to close the connection the double of the time is needed.<br>On other kernels the period depends on the kernel configuration.<br><br>A reasonable value for this option is 300 seconds, which is the new<br>Redis default starting with Redis 3.2.1. | 
+| ```REDIS_DATABASES``` | 16 | Number of redis databases | 
+| ```REDIS_DATA``` | /var/lib/redis | Data directory of redis |
+| ```REDIS_PASSWORD``` | - | Redis password |
+| ```REDIS_MAXCLIENTS``` | 10000 | Max connected clients | 
 
 <br>
 # Master Configuration Options
