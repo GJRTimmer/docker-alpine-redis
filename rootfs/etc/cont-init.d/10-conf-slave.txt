@@ -50,7 +50,7 @@ else
 	# we won't be able to login
 	# we use REDIS_PASSWORD for masterauth
 	if [ -n "${REDIS_PASSWORD}" ]; then
-		sed "s|^\(#[[:blank:]]\)*\(masterauth.*\)|masterauth ${SLAVE_MPASS}|" -i /etc/redis.conf
+		sed "s|^\(#[[:blank:]]\)*\(masterauth.*\)|masterauth ${REDIS_PASSWORD}|" -i /etc/redis.conf
 	fi
 
 fi
