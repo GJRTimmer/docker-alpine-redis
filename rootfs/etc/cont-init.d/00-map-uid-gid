@@ -12,6 +12,10 @@ if [[ $USERMAP_GID != *[[:digit:]]* ]]; then
 	USERMAP_GID=$(id -g $USERMAP_GID)
 fi
 
+mkdir -p /var/lib/sentinel
+
 chown -R ${USERMAP_UID}:${USERMAP_GID} /var/lib/redis
 chown -R ${USERMAP_UID}:${USERMAP_GID} /var/log/redis
 chown -R ${USERMAP_UID}:${USERMAP_GID} /var/run/redis
+
+chown -R ${USERMAP_UID}:${USERMAP_GID} /var/lib/sentinel
