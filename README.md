@@ -90,3 +90,7 @@ Default(s):
 | Option | Default | Required | Description |
 |--------|---------|----------|-------------|
 | ```SENTINEL``` | 0 | - | Activate redis-server sentinel |
+| ```SENTINEL_IP``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` | 
+| ```SENTINEL_PORT``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` |
+| ```SENTINEL_MSET``` | - | Yes | Name of master set |
+| ```SENTINEL_MHOST``` | - | Yes | IP of master redis |
