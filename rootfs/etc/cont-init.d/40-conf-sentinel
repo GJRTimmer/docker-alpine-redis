@@ -18,7 +18,7 @@ if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; the
 
 	sed "s/^port.*/port ${SENTINEL_PORT}/" -i /etc/sentinel.conf
 	
-	if [ -n "$SENTINEL_ANNOUNCE_IP" ]; then
+	if [ -n "${SENTINEL_ANNOUNCE_IP}" ]; then
 		sed "s/^# sentinel announce-ip.*/sentinel announce-ip ${SENTINEL_ANNOUNCE_IP}/" -i /etc/sentinel.conf
 		sed "s/^sentinel announce-ip.*/sentinel announce-ip ${SENTINEL_ANNOUNCE_IP}/" -i /etc/sentinel.conf
 	fi
@@ -38,7 +38,7 @@ if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; the
 		exit 1
 	fi
 	
-	if [ -z "$SENTINEL_MASTER_PORT" ]; then
+	if [ -z "${SENTINEL_MASTER_PORT}" ]; then
 		echo "Missing SENTINEL_MASTER_PORT"
 		exit 1
 	fi
@@ -50,7 +50,7 @@ if (( ${SENTINEL_IS_ACTIVE} == 1 )) || [ "${SENTINEL_IS_ACTIVE}" = "true" ]; the
 	
 	sed "s/^sentinel monitor.*/sentinel monitor ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_IP} ${SENTINEL_MASTER_PORT} ${SENTINEL_QUORUM} /" -i /etc/sentinel.conf
 	
-	if [ -n "$SENTINEL_MASTER_PASSWORD" ]; then
+	if [ -n "${SENTINEL_MASTER_PASSWORD}" ]; then
 		sed "s/^# sentinel auth-pass.*/sentinel auth-pass ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_PASSWORD}/" -i /etc/sentinel.conf
 		sed "s/^sentinel auth-pass.*/sentinel auth-pass ${SENTINEL_MASTER_SET} ${SENTINEL_MASTER_PASSWORD}/" -i /etc/sentinel.conf
 	fi
