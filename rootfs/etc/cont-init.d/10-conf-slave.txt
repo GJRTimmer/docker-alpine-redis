@@ -10,12 +10,12 @@ SLAVE_PORT=${SLAVE_PORT:-}
 if (( ${SLAVE} == 1 )) || [ "${SLAVE}" = "true" ]; then
 
 	if [ -z "${SLAVE_MHOST}" ]; then
-		echo "Parameter ${SLAVE_MHOST}"
+		echo "Environment parameter missing SLAVE_MHOST"
 		exit 1
 	fi
 	
 	if [ -z "${SLAVE_MPORT}" ]; then
-		echo "Parameter ${SLAVE_MPORT}"
+		echo "Environment parameter missing SLAVE_MPORT"
 		exit 1
 	fi
 
