@@ -11,21 +11,21 @@
   - [Slave Configuration](#slave-configuration)
   - [Sentinel Configuration](#sentinel-configuration)
   
-  <br>
+
 # Introduction
 
 Docker image for running Redis, image is based upon Alpine Linux.
 
 Redis is an open source, BSD licensed, advanced key-value cache and store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets, sorted sets, bitmaps and hyperloglogs.
 
-<br>
+
 # Getting Started
 
 ```bash
 docker pull registry.timmertech.nl/docker/alpine-redis
 ```
 
-<br>
+
 # Examples
  - [standalone redis](examples/docker-redis.yml)
  - [standalone master](examples/docker-master.yml)
@@ -35,7 +35,7 @@ docker pull registry.timmertech.nl/docker/alpine-redis
  - [slave with sentinel](examples/docker-slave-sentinel.yml)
  - [basic failover setup, 3x redis, 3x sentinel(s)](examples/docker-failover.yml)
 
-<br>
+
 # Locations
 
 Default(s):
@@ -48,7 +48,7 @@ Default(s):
 | Log(s) | /var/log/redis |
 | Unix Socket | /var/run/redis/redis.sock |
 
-<br>
+
 # General Configuration
 
 | Option | Default | Description |
@@ -58,7 +58,7 @@ Default(s):
 | ```USERMAP_UID``` | redis | Map ownership to UID |
 | ```USERMAP_GID``` | redis | Map ownership to GID |
 
-<br>
+
 # Redis Configuration
 | Option | Default | Description |
 |--------|---------|-------------|
@@ -72,7 +72,7 @@ Default(s):
 | ```REDIS_MIN_SLAVES_TO_WRITE``` | 1 | It is possible for a master to stop accepting writes if there are less than<br>N slaves connected, having a lag less or equal than M seconds. |
 | ```REDIS_MIN_SLAVES_MAX_LAG``` | 10 | It is possible for a master to stop accepting writes if there are less than<br>N slaves connected, having a lag less or equal than M seconds. |
 
-<br>
+
 # Slave Configuration
 
 | Option | Default | Required | Description |
@@ -84,7 +84,7 @@ Default(s):
 | ```SLAVE_IP``` | - | No | Publish IP of slave, used for docker NAT, ```IP``` is IP to reach container, uses redis ```slave-announce-ip``` |
 | ```SLAVE_PORT``` | - | No | Publish port of slave, used for docker, ````PORT``` is port to reach container, uses redis ```slave-announce-port``` |
 
-<br>
+
 # Sentinel Configuration
 
 | Option | Default | Required | Description |
