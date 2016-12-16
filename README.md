@@ -3,13 +3,17 @@
 # docker/alpine-redis:3.2.5
 
 - [Introduction](#introduction)
-- [Getting Started](#getting-started)
-  - [Examples](#examples)
-  - [Locations](#locations)
-  - [General Configuration](#general-configuration)
-  - [Redis Configuration](#redis-configuration)
-  - [Slave Configuration](#slave-configuration)
-  - [Sentinel Configuration](#sentinel-configuration)
+- [Docker Registries](#docker-registries)
+- [Source Repositories](#source-repositories)
+- [Installation](#installation)
+  - [Docker Hub](#install-from-docker-hub)
+  - [TimmerTech](#install-from-timmertech)
+- [Examples](#examples)
+- [Locations](#locations)
+- [General Configuration](#general-configuration)
+- [Redis Configuration](#redis-configuration)
+- [Slave Configuration](#slave-configuration)
+- [Sentinel Configuration](#sentinel-configuration)
   
 
 # Introduction
@@ -19,10 +23,42 @@ Docker image for running Redis, image is based upon Alpine Linux.
 Redis is an open source, BSD licensed, advanced key-value cache and store. It is often referred to as a data structure server since keys can contain strings, hashes, lists, sets, sorted sets, bitmaps and hyperloglogs.
 
 
-# Getting Started
+# Docker Registries
 
+ - ```datacore/docker-alpine-redis:latest``` (docker.com)
+ - ```registry.timmertech.nl/docker/alpine-redis:latest``` (registry.timmertech.nl)
+
+ 
+# Source Repositories
+
+- [https://github.com/GJRTimmer/docker-alpine-redis](github.com)
+- [https://gitlab.timmertech.nl/docker/alpine-redis.git](gitlab.timmertech.nl)
+
+ 
+# Installation
+
+## Install from docker hub
+Download:
 ```bash
-docker pull registry.timmertech.nl/docker/alpine-redis
+docker pull datacore/docker-alpine-redis:latest
+```
+
+Build:
+```bash
+docker build -t datacore/docker-alpine-redis https://github.com/GJRTimmer/docker-alpine-redis
+```
+
+
+## Install from timmertech
+
+Download:
+```bash
+docker pull registry.timmertech.nl/docker/alpine-redis:latest
+```
+
+Build:
+```bash
+docker build -t datacore/docker-alpine-redis https://gitlab.timmertech.nl/docker/alpine-redis
 ```
 
 
