@@ -12,7 +12,7 @@ Docker image for redis server with optional sentinel.
 - [Docker Registries](#docker-registries)
 - [Source Repositories](#source-repositories)
 - [Installation](#installation)
-  - [Docker Hub](#install-from-docker-hub)
+  - [DockerHub](#install-from-dockerhub)
   - [TimmerTech](#install-from-timmertech)
 - [Examples](#examples)
 - [Locations](#locations)
@@ -31,7 +31,7 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
 
 # Docker Registries
 
- - ```datacore/alpine-redis:latest``` (docker.com)
+ - ```datacore/alpine-redis:latest``` (DockerHub)
  - ```registry.timmertech.nl/docker/alpine-redis:latest``` (registry.timmertech.nl)
 
  
@@ -43,7 +43,7 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
  
 # Installation
 
-## Install from docker hub
+## Install from DockerHub
 Download:
 ```bash
 docker pull datacore/alpine-redis:latest
