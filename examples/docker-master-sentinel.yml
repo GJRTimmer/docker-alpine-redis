@@ -3,7 +3,7 @@ services:
   redis-master-sentinel:
     container_name: redis-master-sentinel
     restart: always
-    image: datacore/docker-alpine-redis:latest
+    image: datacore/alpine-redis:latest
     hostname: master-sentinel
     ports:
       - 6379:6379

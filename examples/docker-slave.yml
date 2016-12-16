@@ -3,7 +3,7 @@ services:
   redis-slave:
     container_name: redis-slave
     restart: always
-    image: datacore/docker-alpine-redis:latest
+    image: datacore/alpine-redis:latest
     hostname: slave
     ports:
       - 6380:6379

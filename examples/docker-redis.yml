@@ -3,7 +3,7 @@ services:
   redis:
     container_name: redis
     restart: always
-    image: datacore/docker-alpine-redis:latest
+    image: datacore/alpine-redis:latest
     hostname: redis
     ports:
       - 6379:6379

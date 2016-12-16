@@ -25,7 +25,7 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
 
 # Docker Registries
 
- - ```datacore/docker-alpine-redis:latest``` (docker.com)
+ - ```datacore/alpine-redis:latest``` (docker.com)
  - ```registry.timmertech.nl/docker/alpine-redis:latest``` (registry.timmertech.nl)
 
  
@@ -40,7 +40,7 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
 ## Install from docker hub
 Download:
 ```bash
-docker pull datacore/docker-alpine-redis:latest
+docker pull datacore/alpine-redis:latest
 ```
 
 Build:

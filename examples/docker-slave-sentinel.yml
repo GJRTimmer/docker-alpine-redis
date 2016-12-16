@@ -3,7 +3,7 @@ services:
     redis-slave-sentinel:
     container_name: redis-slave-sentinel
     restart: always
-    image: datacore/docker-alpine-redis:latest
+    image: datacore/alpine-redis:latest
     hostname: slave-sentinel
     ports:
       - 6380:6379

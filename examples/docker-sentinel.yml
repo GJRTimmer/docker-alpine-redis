@@ -3,7 +3,7 @@ services:
   redis-sentinel:
     container_name: redis-sentinel
     restart: always
-    image: datacore/docker-alpine-redis:latest
+    image: datacore/alpine-redis:latest
     hostname: sentinel
     ports:
       - 26382:26379
