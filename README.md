@@ -96,7 +96,7 @@ Default(s):
 | Option | Default | Description |
 |--------|---------|-------------|
 | ```REDIS``` | ```1 / true``` | Activate Redis Server |
-| ``` SENTINEL``` | ```0 / false``` | Activate Redis Sentinel |
+| ```SENTINEL``` | ```0 / false``` | Activate Redis Sentinel |
 | ```USERMAP_UID``` | redis | Map ownership to UID |
 | ```USERMAP_GID``` | redis | Map ownership to GID |
 
@@ -123,8 +123,8 @@ Default(s):
 | ```SLAVE_MHOST``` | - | Yes | IP of master server |
 | ```SLAVE_MPORT``` | 6379 | No | Port of the master redis server |
 | ```SLAVE_MPASS``` | - | No | Password of the master redis server |
-| ```SLAVE_IP``` | - | No | Publish IP of slave, used for docker NAT, ```IP``` is IP to reach container, uses redis ```slave-announce-ip``` |
-| ```SLAVE_PORT``` | - | No | Publish port of slave, used for docker, ````PORT``` is port to reach container, uses redis ```slave-announce-port``` |
+| ```SLAVE_IP``` | - | No | Publish IP of slave, used for docker NAT, ```IP``` is the docker host IP to reach container, uses redis ```slave-announce-ip``` |
+| ```SLAVE_PORT``` | - | No | Publish port of slave, used for docker, ```PORT``` is the docker host port to reach container, uses redis ```slave-announce-port``` |
 
 
 # Sentinel Configuration
@@ -132,8 +132,8 @@ Default(s):
 | Option | Default | Required | Description |
 |--------|---------|----------|-------------|
 | ```SENTINEL``` | 0 | - | Activate redis-server sentinel |
-| ```SENTINEL_IP``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` | 
-| ```SENTINEL_PORT``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is IP to reach container, uses ```sentinel announce-ip``` |
+| ```SENTINEL_IP``` | - | No | Publish IP of sentinel, used for docker NAT, ```IP``` is the docker host IP to reach container, uses ```sentinel announce-ip``` | 
+| ```SENTINEL_PORT``` | - | No | Publish IP of sentinel, used for docker NAT, ```PORT``` is the docker host PORT to reach container, uses ```sentinel announce-ip``` |
 | ```SENTINEL_MSET``` | - | Yes | Name of master set |
 | ```SENTINEL_MHOST``` | - | Yes | IP of master redis |
 | ```SENTINEL_MPORT``` | 6379 | No | Port of master redis server |
