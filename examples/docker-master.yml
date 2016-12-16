@@ -3,7 +3,7 @@ services:
   redis-master:
     container_name: redis-master
     restart: always
-    image: registry.timmertech.nl/docker/alpine-redis:latest
+    image: datacore/docker-alpine-redis:latest
     hostname: master
     ports:
       - 6379:6379
