@@ -3,6 +3,7 @@ MAINTAINER G.J.R. Timmer <gjr.timmer@gmail.com>
 
 ARG BUILD_DATE
 ARG VCS_REF
+ARG REDIS_VERSION
 
 LABEL \
 	nl.timmertech.build-date=${BUILD_DATE} \
@@ -12,8 +13,8 @@ LABEL \
 	nl.timmertech.vcs-ref=${VCS_REF} \
 	nl.timmertech.license=MIT
 
-RUN echo '@edge http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
-	apk add --update --no-cache redis@edge
+RUN echo 'http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
+	apk add --update --no-cache redis=${REDIS_VERSION}
 
 COPY rootfs/ /
 
