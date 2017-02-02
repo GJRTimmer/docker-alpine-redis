@@ -37,8 +37,8 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
  
 # Source Repositories
 
-- [https://github.com/GJRTimmer/docker-alpine-redis](github.com)
-- [https://gitlab.timmertech.nl/docker/alpine-redis.git](gitlab.timmertech.nl)
+- [github.com](https://github.com/GJRTimmer/docker-alpine-redis)
+- [gitlab.timmertech.nl](https://gitlab.timmertech.nl/docker/alpine-redis)
 
  
 # Installation
