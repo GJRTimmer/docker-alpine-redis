@@ -14,7 +14,7 @@ LABEL \
 	nl.timmertech.license=MIT
 
 RUN echo 'http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
-	apk add --update --no-cache redis=${REDIS_VERSION}-*
+	apk add --update --no-cache redis=${REDIS_VERSION}
 
 COPY rootfs/ /
 
