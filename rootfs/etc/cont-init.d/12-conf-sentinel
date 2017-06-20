@@ -12,7 +12,7 @@ SENTINEL_DOWN_AFTER_MS=${SENTINEL_DOWN_AFTER_MS:-30000}
 SENTINEL_PARALLEL_SYNCS=${SENTINEL_PARALLEL_SYNCS:-1}
 SENTINEL_FAILOVER_TIMEOUT=${SENTINEL_FAILOVER_TIMEOUT:-180000}
 
-if (( ${SENTINEL} == 1 )) || [ "${SENTINEL}" = "true" ]; then
+if (( ${SENTINEL} == 1 )) || [ "${SENTINEL}" == "true" ]; then
 
 	if [ -n "${SENTINEL_IP}" ]; then
 		sed "s|^\(#[[:blank:]]\)*\(sentinel announce-ip.*\)|sentinel announce-ip ${SENTINEL_IP}|" -i /etc/sentinel.conf
