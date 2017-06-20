@@ -7,7 +7,7 @@ SLAVE_MPASS=${SLAVE_MPASS:-}
 SLAVE_IP=${SLAVE_IP:-}
 SLAVE_PORT=${SLAVE_PORT:-}
 
-if (( ${SLAVE} == 1 )) || [ "${SLAVE}" = "true" ]; then
+if [ ${SLAVE} == 1 ] || [ "${SLAVE}" == "true" ]; then
 
 	if [ -z "${SLAVE_MHOST}" ]; then
 		echo "Environment parameter missing SLAVE_MHOST"
