@@ -1,11 +1,11 @@
 FROM registry.timmertech.nl/docker/alpine-base:latest
-MAINTAINER G.J.R. Timmer <gjr.timmer@gmail.com>
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG REDIS_VERSION
+ENV REDIS_VERSION=4.0.9-r0
 
 LABEL \
+	maintainer="G.J.R. Timmer <gjr.timmer@gmail.com>" \
 	nl.timmertech.build-date=${BUILD_DATE} \
 	nl.timmertech.name=alpine-redis \
 	nl.timmertech.vendor=timmertech.nl \
