@@ -4,7 +4,7 @@
 [![](https://images.microbadger.com/badges/commit/datacore/alpine-redis.svg)](https://microbadger.com/images/datacore/alpine-redis)
 [![](https://images.microbadger.com/badges/license/datacore/alpine-redis.svg)](https://microbadger.com/images/datacore/alpine-redis)
 
-# docker/alpine-redis:3.2.9
+# docker/alpine-redis:4.0.11
 
 Docker image for redis server with optional sentinel.
 
