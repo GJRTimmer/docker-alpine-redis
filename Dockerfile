@@ -3,7 +3,6 @@ FROM registry.timmertech.nl/docker/alpine-base:latest
 ARG BUILD_DATE
 ARG VCS_REF
 ARG REDIS_VERSION=4.0.11-r0
-ENV REDIS_VERSION=${REDIS_VERSION}
 
 LABEL \
 	maintainer="G.J.R. Timmer <gjr.timmer@gmail.com>" \
