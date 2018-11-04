@@ -2,7 +2,8 @@ FROM registry.timmertech.nl/docker/alpine-base:latest
 
 ARG BUILD_DATE
 ARG VCS_REF
-ENV REDIS_VERSION=4.0.11-r0
+ARG REDIS_VERSION=4.0.11-r0
+ENV REDIS_VERSION=${REDIS_VERSION}
 
 LABEL \
 	maintainer="G.J.R. Timmer <gjr.timmer@gmail.com>" \
@@ -12,7 +13,7 @@ LABEL \
 	nl.timmertech.vcs-url="https://gitlab.timmertech.nl/docker/alpine-redis.git" \
 	nl.timmertech.vcs-ref=${VCS_REF} \
 	nl.timmertech.license=MIT \
-	io.redis.version=4.0.11
+	io.redis.version=${REDIS_VERSION}
 
 RUN echo 'http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
 	apk add --update --no-cache redis=${REDIS_VERSION}
