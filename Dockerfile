@@ -9,7 +9,7 @@ LABEL \
 	nl.timmertech.build-date=${BUILD_DATE} \
 	nl.timmertech.name=alpine-redis \
 	nl.timmertech.vendor=timmertech.nl \
-	nl.timmertech.vcs-url="https://github.com/GJRTimmer/docker-alpine-redis.git" \
+	nl.timmertech.vcs-url="https://gitlab.timmertech.nl/docker/alpine-redis.git" \
 	nl.timmertech.vcs-ref=${VCS_REF} \
 	nl.timmertech.license=MIT \
 	io.redis.version=4.0.11
