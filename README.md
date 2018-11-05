@@ -1,7 +1,5 @@
 [![build status](https://gitlab.timmertech.nl/docker/alpine-redis/badges/master/build.svg)](https://gitlab.timmertech.nl/docker/alpine-redis/commits/master)
 [![](https://images.microbadger.com/badges/image/datacore/alpine-redis.svg)](https://microbadger.com/images/datacore/alpine-redis)
-[![](https://images.microbadger.com/badges/version/datacore/alpine-redis.svg)](https://microbadger.com/images/datacore/alpine-redis)
-[![](https://images.microbadger.com/badges/commit/datacore/alpine-redis.svg)](https://microbadger.com/images/datacore/alpine-redis)
 [![](https://images.microbadger.com/badges/license/datacore/alpine-redis.svg)](https://microbadger.com/images/datacore/alpine-redis)
 
 # docker/alpine-redis:4.0.11
