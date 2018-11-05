@@ -9,7 +9,7 @@ ENV REDIS_VERSION=${REDIS}
 LABEL \
 	maintainer="G.J.R. Timmer <gjr.timmer@gmail.com>" \
 	org.label-schema.schema-version="1.0" \
-    org.label-schema.build-date=${BUILD_DATE} \
+	org.label-schema.build-date=${BUILD_DATE} \
 	org.label-schema.name=alpine-redis \
 	org.label-schema.vendor=timmertech.nl \
 	org.label-schema.url="https://gitlab.timmertech.nl/docker/alpine-redis" \
