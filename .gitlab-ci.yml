@@ -1,7 +1,6 @@
 stages:
   - build
   - dockerhub
-  - clean
 
 docker:latest:
   stage: build
