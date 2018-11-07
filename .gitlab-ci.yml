@@ -35,3 +35,13 @@ dockerhub:latest:
   script:
     - curl -s -H 'Content-Type:application/json' --data '{"build":true}' -X POST https://registry.hub.docker.com/u/datacore/redis/trigger/d8cff0a0-0095-4ae2-9791-c7acbdcfabb8/ > /dev/null
   when: manual
+
+dockerhub:release:
+  stage: dockerhub
+  only:
+    - tags
+  before_script:
+    - apk add --update --no-cache curl
+  script:
+    - curl -s -H 'Content-Type:application/json' --data "{\"source_type\":\"Tag\",\"source_name\":\"${CI_COMMIT_REF_NAME}\"}" -X POST https://registry.hub.docker.com/u/datacore/redis/trigger/d8cff0a0-0095-4ae2-9791-c7acbdcfabb8/ > /dev/null
+  when: manual
