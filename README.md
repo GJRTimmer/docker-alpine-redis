@@ -1,8 +1,8 @@
-[![build status](https://gitlab.timmertech.nl/docker/alpine-redis/badges/master/build.svg)](https://gitlab.timmertech.nl/docker/alpine-redis/commits/master)
-[![](https://images.microbadger.com/badges/image/datacore/alpine-redis.svg)](https://microbadger.com/images/datacore/alpine-redis)
-[![](https://images.microbadger.com/badges/license/datacore/alpine-redis.svg)](https://microbadger.com/images/datacore/alpine-redis)
+[![build status](https://gitlab.timmertech.nl/docker/redis/badges/master/build.svg)](https://gitlab.timmertech.nl/docker/redis/commits/master)
+[![](https://images.microbadger.com/badges/image/datacore/redis.svg)](https://microbadger.com/images/datacore/redis)
+[![](https://images.microbadger.com/badges/license/datacore/redis.svg)](https://microbadger.com/images/datacore/redis)
 
-# docker/alpine-redis:4.0.11
+# docker/redis:4.0.11
 
 Docker image for redis server with optional sentinel.
 
@@ -26,14 +26,14 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
 
 # Docker Registries
 
- - ```datacore/alpine-redis:latest```
- - ```registry.timmertech.nl/docker/alpine-redis:latest```
+ - ```datacore/redis:latest```
+ - ```registry.timmertech.nl/docker/redis:latest```
 
 
 # Source Repositories
 
-- [github.com](https://github.com/GJRTimmer/docker-alpine-redis)
-- [gitlab.timmertech.nl](https://gitlab.timmertech.nl/docker/alpine-redis)
+- [github.com](https://github.com/GJRTimmer/docker-redis)
+- [gitlab.timmertech.nl](https://gitlab.timmertech.nl/docker/redis)
  
 # Installation
 
@@ -43,12 +43,12 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
 
 Download:
 ```bash
-docker pull datacore/alpine-redis:latest
+docker pull datacore/redis:latest
 ```
 
 Build:
 ```bash
-docker build -t datacore/docker-alpine-redis https://github.com/GJRTimmer/docker-alpine-redis
+docker build -t datacore/redis https://github.com/GJRTimmer/docker-redis
 ```
 </p>
 </details>
@@ -61,12 +61,12 @@ docker build -t datacore/docker-alpine-redis https://github.com/GJRTimmer/docker
 
 Download:
 ```bash
-docker pull registry.timmertech.nl/docker/alpine-redis:latest
+docker pull registry.timmertech.nl/docker/redis:latest
 ```
 
 Build:
 ```bash
-docker build -t datacore/docker-alpine-redis https://gitlab.timmertech.nl/docker/alpine-redis
+docker build -t datacore/redis https://gitlab.timmertech.nl/docker/redis
 ```
 </p>
 </details>

@@ -1,4 +1,4 @@
-FROM registry.timmertech.nl/docker/alpine-base:latest
+FROM registry.timmertech.nl/docker/base:latest
 
 ARG BUILD_DATE
 ARG VCS_REF
@@ -12,8 +12,8 @@ LABEL \
 	org.label-schema.build-date=${BUILD_DATE} \
 	org.label-schema.name=alpine-redis \
 	org.label-schema.vendor=timmertech.nl \
-	org.label-schema.url="https://gitlab.timmertech.nl/docker/alpine-redis" \
-	org.label-schema.vcs-url="https://gitlab.timmertech.nl/docker/alpine-redis.git" \
+	org.label-schema.url="https://gitlab.timmertech.nl/docker/redis" \
+	org.label-schema.vcs-url="https://gitlab.timmertech.nl/docker/redis.git" \
 	org.label-schema.vcs-ref=${VCS_REF} \
 	nl.timmertech.license=MIT \
 	io.redis.version=${REDIS_VERSION}
