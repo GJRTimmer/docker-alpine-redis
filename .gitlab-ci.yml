@@ -23,6 +23,8 @@ docker:latest:
   stage: build
   only: 
     - master
+  except:
+    - tags
   variables:
     DOCKER_IMAGE: ${CI_REGISTRY}/${CI_PROJECT_PATH}:latest
   <<: *docker-login
@@ -53,6 +55,8 @@ docker:release:
 
 dockerhub:latest:
   stage: dockerhub
+  only:
+    - master
   except:
     - tags
   script:
