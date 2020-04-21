@@ -1,8 +1,8 @@
-FROM registry.timmertech.nl/docker/alpine-base:3.9
+FROM registry.timmertech.nl/docker/alpine-base:3.10
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG REDIS=4.0.14
+ARG REDIS=5.0.5
 
 ENV REDIS_VERSION=${REDIS}
 
