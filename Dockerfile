@@ -1,8 +1,8 @@
-FROM registry.timmertech.nl/docker/alpine-base:latest
+FROM registry.timmertech.nl/docker/alpine-base:3.8
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG REDIS=4.0.12-r0
+ARG REDIS=4.0.14
 
 ENV REDIS_VERSION=${REDIS}
 
@@ -19,7 +19,7 @@ LABEL \
     io.redis.version=${REDIS_VERSION}
 
 RUN echo 'http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
-    apk add --update --no-cache redis=${REDIS_VERSION}
+    apk add --update --no-cache redis=${REDIS_VERSION}-r0
 
 COPY rootfs/ /
 
