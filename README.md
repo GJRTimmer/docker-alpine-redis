@@ -1,4 +1,4 @@
-[![build status](https://gitlab.timmertech.nl/docker/redis/badges/master/build.svg)](https://gitlab.timmertech.nl/docker/redis/commits/master)
+[![build status](https://gitlab.timmertech.nl/docker/redis/badges/master/pipeline.svg)](https://gitlab.timmertech.nl/docker/redis/commits/master)
 [![](https://images.microbadger.com/badges/image/datacore/redis.svg)](https://microbadger.com/images/datacore/redis)
 [![](https://images.microbadger.com/badges/license/datacore/redis.svg)](https://microbadger.com/images/datacore/redis)
 
