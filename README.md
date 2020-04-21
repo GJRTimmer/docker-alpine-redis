@@ -2,11 +2,8 @@
 [![](https://images.microbadger.com/badges/image/datacore/redis.svg)](https://microbadger.com/images/datacore/redis)
 [![](https://images.microbadger.com/badges/license/datacore/redis.svg)](https://microbadger.com/images/datacore/redis)
 
-# docker/redis:4.0.12
-
 Docker image for redis server with optional sentinel.
 
-- [docker/redis:4.0.12](#dockerredis4012)
 - [Introduction](#introduction)
 - [Docker Registries](#docker-registries)
 - [Source Repositories](#source-repositories)
@@ -33,7 +30,7 @@ Redis is an open source, BSD licensed, advanced key-value cache and store. It is
 
 # Source Repositories
 
-- [github.com](https://github.com/GJRTimmer/docker-redis)
+- [github.com](https://github.com/gjrtimmer/docker-redis)
 - [gitlab.timmertech.nl](https://gitlab.timmertech.nl/docker/redis)
  
 # Installation
@@ -49,7 +46,7 @@ docker pull datacore/redis:latest
 
 Build:
 ```bash
-docker build -t datacore/redis https://github.com/GJRTimmer/docker-redis
+docker build -t datacore/redis https://github.com/gjrtimmer/docker-redis
 ```
 </p>
 </details>
