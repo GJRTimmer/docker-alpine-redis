@@ -1,8 +1,8 @@
-FROM registry.timmertech.nl/docker/alpine-base:3.10
+FROM registry.timmertech.nl/docker/alpine-base:3.11
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG REDIS=5.0.5
+ARG REDIS=5.0.7
 
 ENV REDIS_VERSION=${REDIS}
 
@@ -16,6 +16,7 @@ LABEL \
     org.label-schema.vcs-url="https://gitlab.timmertech.nl/docker/redis.git" \
     org.label-schema.vcs-ref=${VCS_REF} \
     nl.timmertech.license=MIT \
+    org.alpinelinux.version=3.11 \
     io.redis.version=${REDIS_VERSION}
 
 RUN echo 'http://nl.alpinelinux.org/alpine/edge/main' >> /etc/apk/repositories && \
