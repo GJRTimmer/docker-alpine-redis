@@ -1,5 +1,9 @@
 # Changelog
 
+**5.0.5**
+  - alpine: 3.10
+  - redis: 5.0.5
+
 **4.0.14**
   - alpine: 3.9
   - redis: 4.0.14
