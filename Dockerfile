@@ -2,7 +2,7 @@ FROM registry.timmertech.nl/docker/alpine-base:3.12
 
 ARG BUILD_DATE
 ARG VCS_REF
-ARG REDIS=5.0.7
+ARG REDIS=6.0.9
 
 ENV REDIS_VERSION=${REDIS}
 
